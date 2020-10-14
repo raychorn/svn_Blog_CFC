@@ -1,0 +1,78 @@
+<link href="style.css" rel="stylesheet" type="text/css" />
+<p><strong>Be Prepared for your next Interview as a Programmer :: The Cake Cutting Machine Scenario </strong></p>
+<p>Some companies are beginning to use what they probably feel are innovative ways to assess the technical skills of their propsective employees by using little mind-game tests such as the one we recently ran into as stated below:</p>
+<p><strong>The Scenario</strong></p>
+<p>Imagine you are being asked to work with a cake cutting machine that can make a single cut on a sqaure cake. There is no way to read the coordinates of the corners but you can program the machine to make a single cut using any orientation of the cutting blade. Also assume the cakes are being arranged so the blade will make a cut as requested.</p>
+<p><strong>How many ways are there to cut a sqaure cake into two equal pieces ?</strong> </p>
+<p>We can all agree the following cuts will work.</p>
+<table width="100" border="0" align="center" cellpadding="-1" cellspacing="-1">
+  <caption align="bottom">
+    Cut One
+  </caption>
+  <tr>
+    <td><img src="http://rabid.1.contentopia.net/blog/drawings/ProgrammingAssessments/cake-cutter/cut-one.gif" width="254" height="196" /></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100" border="0" align="center" cellpadding="-1" cellspacing="-1">
+  <caption align="bottom">
+    Cut Two
+  </caption>
+  <tr>
+    <td><img src="http://rabid.2.contentopia.net/blog/drawings/ProgrammingAssessments/cake-cutter/cut-two.gif" width="254" height="196" /></td>
+  </tr>
+</table>
+<p>Cuts One and Two are mirror images of each other but they are two distinct cuts. </p>
+<table width="100" border="0" align="center" cellpadding="-1" cellspacing="-1">
+  <caption align="bottom">
+    Cut Three
+  </caption>
+  <tr>
+    <td><img src="http://rabid.1.contentopia.net/blog/drawings/ProgrammingAssessments/cake-cutter/cut-three.gif" width="254" height="196" /></td>
+  </tr>
+</table>
+<p>Cuts Three and Four are also mirror images of each other. </p>
+<table width="100" border="0" align="center" cellpadding="-1" cellspacing="-1">
+  <caption align="bottom">
+    Cut Four
+  </caption>
+  <tr>
+    <td><img src="http://rabid.2.contentopia.net/blog/drawings/ProgrammingAssessments/cake-cutter/cut-four.gif" width="254" height="196" /></td>
+  </tr>
+</table>
+<p>Now this is where things begin to get a bit interesting because after 4 cuts we have exhausted the obvious ways to slice the cake. Notice the point where the cut begins is exactly the same distance from where the cut ends at the opposite side of the cake.</p>
+<p>Keep in mind one of the constraints was that there was NO WAY to determine the coordinated of the four corners but obviously this constraint was magically relaxed by the Interviewer because, one assumes, the goal was not to determine how many ways to cut the silly cake but rather to see what happens when the constraints were magically changed. This then becomes less of a test to assess the programming skills of an individual but more of a way to determine how well someone will react to the B.S. one may be faced with while doing their job. Keep in mind nobody was asked to write any code for this Scenario. </p>
+<table width="100" border="0" align="center" cellpadding="-1" cellspacing="-1">
+  <caption align="bottom">
+    Cut Five
+  </caption>
+  <tr>
+    <td><img src="http://rabid.1.contentopia.net/blog/drawings/ProgrammingAssessments/cake-cutter/cut-five.gif" width="254" height="196" /></td>
+  </tr>
+</table>
+<p>Cut Six is of course a mirror image of Cut Five - there are two more cuts that are simple variations of this theme.</p>
+<p>Notice the fact that Cuts Five and Six as well as Seven and Eight all cross through the center of the sqaure. Isn't this interesting ?  </p>
+<table width="100" border="0" align="center" cellpadding="-1" cellspacing="-1">
+  <caption align="bottom">
+    Cut Six
+  </caption>
+  <tr>
+    <td><img src="http://rabid.2.contentopia.net/blog/drawings/ProgrammingAssessments/cake-cutter/cut-six.gif" width="254" height="196" /></td>
+  </tr>
+</table>
+<p>So now that we know the last four Cuts traversed the center we can simply overlay a circle on top of the sqare to make it easier to determine the center of the square for the next series of cuts. </p>
+<table width="100" border="0" align="center" cellpadding="-1" cellspacing="-1">
+  <caption align="bottom">
+    Circle on Sqaure
+  </caption>
+  <tr>
+    <td><img src="http://rabid.1.contentopia.net/blog/drawings/ProgrammingAssessments/cake-cutter/circle-on-sqaure.gif" width="254" height="196" /></td>
+  </tr>
+</table>
+<p>Now let's postulate here that there are 360 cuts we could make were we to rotate the cutting blade about the center of the circle since we know we have been cutting through the center of this imaginary circle during the previous 8 cuts. In fact we now know the previous 8 cuts were simply the obvious examples of the cake having been cut through the center of the imaginary circle.</p>
+<p>How many cuts could be made to split a square cake into two equal parts ? Logic and Mathematics suggests there would be an infinite number of cuts since there are an infinite number of points on a line even if the line forms the <em>circumference</em> of a circle. </p>
+<p>The correct answer given the original constraints however, assuming the mythical cake cutting machine even exists at all, is there cannot be any more cuts than there are degrees in a circle divided by the width of the cutting blade and the machines ability to rotate the cutting blade about the center of the circle. Most stepping motors are not able to step using infinitely tiny measurements and the blade may not even be able to be rotated 360 degrees due to physical limitations on how the blade is to be positioned.</p>
+<p>The bottom line on all this is it doesn't matter how many cuts can be made into a sqaure cake to make two equal parts. The Interviewer will not allow the constraints to remain constant long enough for an answer to be given because the problem doesn't even matter and therefore the solution doesn't even matter.</p>
+<p>Be mindful not to piss-off the Interviewer by giving a glib answer too quickly. You should appear to take your time with the puzzle and you should at-least point out the 8 obvious cuts since the Interviewer will assume this is a trick question and will want to see some kind of proof for your responses. Also be sure to let the Interviewer know you know there are many more cuts than the 8 obvious cuts since you know the cuts are all going through the center of the cake because the goal is to make two equal parts which means both parts must be mirror images and therefore all cuts must traverse the center of the imaginary circle than can be placed within the borders of the cake's edges. </p>
+<p>And now a word from our sponsors... </p>
+<p>This Blog is currently running on <strong>ezCluster&#8482;</strong> and is powered by <strong>ezAJAX&#8482;</strong>. Just give it a test-drive and then get ready to download and experience <strong>ezAJAX&#8482;</strong> for yourself. In the meantime we are developing our web presence for <strong>ezAJAX&#8482;</strong> which will be based on our <strong>Geonosis&#8482;</strong> Database Engine. </p>

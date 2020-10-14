@@ -1,0 +1,101 @@
+<link href="style.css" rel="stylesheet" type="text/css" />
+<p align="justify"><strong>Code Well-Formed JavaScript Objects The Easy Way   </strong> </p>
+<p align="justify">Okay so what's the skinny on coding well-formed JavaScript Objects anyway ? More importantly, who cares about coding whatever well-formed JS Objects might be anyway ?!? I mean there has got to me a zillion ways to make Objects in JavaScript - JavaScript <em>wants</em> to make just about everything into an object.</p>
+<p align="justify">A nice fast way to make an Object would be something like &quot;var obj = new Object();&quot;.</p>
+<p align="justify">Just what is a  <strong>Well-Formed</strong> Object anyway ?</p>
+<table width="600" border="1" cellpadding="-1" cellspacing="-1" class="code">
+  	<tr>
+		<td align="center" bgcolor="silver"><strong>This is an example of a Well-Formed JavaScript Object </strong></td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+<table width="100%" border="0" cellspacing="-1" cellpadding="-1" class="code"><tr><td>/*&nbsp;</td></tr>
+<tr><td>&nbsp;objName_obj.js&nbsp;--&nbsp;WellFormedObj&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;WARNING:&nbsp;This&nbsp;object&nbsp;contains&nbsp;or&nbsp;holds&nbsp;onto&nbsp;references&nbsp;to&nbsp;functions&nbsp;that&nbsp;are&nbsp;contained&nbsp;within&nbsp;the&nbsp;body&nbsp;of&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;other&nbsp;functions&nbsp;which&nbsp;might&nbsp;result&nbsp;in&nbsp;accidental&nbsp;closures&nbsp;that&nbsp;need&nbsp;to&nbsp;be&nbsp;freed&nbsp;or&nbsp;a&nbsp;memory&nbsp;leak&nbsp;<br></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;may&nbsp;result.&nbsp;&nbsp;Make&nbsp;sure&nbsp;you&nbsp;are&nbsp;using&nbsp;the&nbsp;destructor&nbsp;method&nbsp;to&nbsp;properly&nbsp;release&nbsp;all&nbsp;objects&nbsp;being&nbsp;<br></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;referenced&nbsp;by&nbsp;every&nbsp;instance&nbsp;of&nbsp;this&nbsp;object&nbsp;in&nbsp;order&nbsp;to&nbsp;avoid&nbsp;any&nbsp;possible&nbsp;memory&nbsp;leak&nbsp;problems.&nbsp;<br></td></tr>
+<tr><td>*/&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>WellFormedObj&nbsp;=&nbsp;function(id){&nbsp;</td></tr>
+<tr><td>&nbsp;this.id&nbsp;=&nbsp;id;&nbsp;</td></tr>
+<tr><td>&nbsp;this.instanceVar2&nbsp;=&nbsp;[];&nbsp;</td></tr>
+<tr><td>&nbsp;this.instanceVar3&nbsp;=&nbsp;[];&nbsp;</td></tr>
+<tr><td>};&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>WellFormedObj.instances&nbsp;=&nbsp;[];&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>WellFormedObj.getInstance&nbsp;=&nbsp;function(aSpec)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;var&nbsp;instance&nbsp;=&nbsp;WellFormedObj.instances[WellFormedObj.instances.length];&nbsp;</td></tr>
+<tr><td>&nbsp;if(instance&nbsp;==&nbsp;null)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;instance&nbsp;=&nbsp;WellFormedObj.instances[WellFormedObj.instances.length]&nbsp;=&nbsp;new&nbsp;WellFormedObj(WellFormedObj.instances.length);&nbsp;</td></tr>
+<tr><td>&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;return&nbsp;instance;&nbsp;</td></tr>
+<tr><td>};&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>WellFormedObj.removeInstance&nbsp;=&nbsp;function(id)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;var&nbsp;ret_val&nbsp;=&nbsp;false;&nbsp;</td></tr>
+<tr><td>&nbsp;if&nbsp;(&nbsp;(id&nbsp;&gt;&nbsp;-1)&nbsp;&&&nbsp;(id&nbsp;&lt;&nbsp;WellFormedObj.instances.length)&nbsp;)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;var&nbsp;instance&nbsp;=&nbsp;WellFormedObj.instances[id];&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;if&nbsp;(instance&nbsp;!=&nbsp;null)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;WellFormedObj.instances[id]&nbsp;=&nbsp;object_destructor(instance);&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;ret_val&nbsp;=&nbsp;(WellFormedObj.instances[id]&nbsp;==&nbsp;null);&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;return&nbsp;ret_val;&nbsp;</td></tr>
+<tr><td>};&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>WellFormedObj.removeInstances&nbsp;=&nbsp;function()&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;var&nbsp;ret_val&nbsp;=&nbsp;true;&nbsp;</td></tr>
+<tr><td>&nbsp;for&nbsp;(var&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;WellFormedObj.instances.length;&nbsp;i++)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;WellFormedObj.removeInstance(i);&nbsp;</td></tr>
+<tr><td>&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;return&nbsp;ret_val;&nbsp;</td></tr>
+<tr><td>};&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>WellFormedObj.prototype&nbsp;=&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;id&nbsp;:&nbsp;-1,&nbsp;</td></tr>
+<tr><td>&nbsp;instanceVar2&nbsp;:&nbsp;[],&nbsp;</td></tr>
+<tr><td>&nbsp;instanceVar3&nbsp;:&nbsp;[],&nbsp;</td></tr>
+<tr><td>&nbsp;toString&nbsp;:&nbsp;function()&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;var&nbsp;aKey&nbsp;=&nbsp;-1;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;var&nbsp;s&nbsp;=&nbsp;'(';&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;s&nbsp;+=&nbsp;'\n';&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;//&nbsp;put&nbsp;any&nbsp;code&nbsp;you&nbsp;desire&nbsp;here&nbsp;and&nbsp;it&nbsp;will&nbsp;be&nbsp;displayed&nbsp;whenever&nbsp;an&nbsp;Object&nbsp;responds&nbsp;to&nbsp;.toString()&nbsp;<br>such&nbsp;as&nbsp;when&nbsp;"alert(anObj);"&nbsp;is&nbsp;executed.&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;s&nbsp;+=&nbsp;')';&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;return&nbsp;s;&nbsp;</td></tr>
+<tr><td>&nbsp;},&nbsp;</td></tr>
+<tr><td>&nbsp;method1&nbsp;:&nbsp;function()&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;return&nbsp;instanceVar1;&nbsp;</td></tr>
+<tr><td>&nbsp;},&nbsp;</td></tr>
+<tr><td>&nbsp;init&nbsp;:&nbsp;function()&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;this.instanceVar2&nbsp;=&nbsp;[];&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;this.instanceVar3&nbsp;=&nbsp;[];&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;return&nbsp;this;&nbsp;</td></tr>
+<tr><td>&nbsp;},&nbsp;</td></tr>
+<tr><td>&nbsp;destructor&nbsp;:&nbsp;function()&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;return&nbsp;(this.id&nbsp;=&nbsp;WellFormedObj.instances[this.id]&nbsp;=&nbsp;this.instanceVar2&nbsp;=&nbsp;this.instanceVar3&nbsp;=&nbsp;null);&nbsp;</td></tr>
+<tr><td>&nbsp;},&nbsp;</td></tr>
+<tr><td>&nbsp;dummy&nbsp;:&nbsp;function()&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;return&nbsp;false;&nbsp;</td></tr>
+<tr><td>&nbsp;}&nbsp;</td></tr>
+<tr><td>};&nbsp;</td></tr>
+<tr><td></td></tr>
+</table>
+	  </td>
+    </tr>
+</table>
+<p align="justify">Notice, if you will, the benefits of using this type of structured approach to programming.</p>
+<p align="justify">Every single instance of every well-formed Object is maintained and accounted for in a manner that allows every single instance to be <em>destructed</em> upon command.  </p>
+<p align="justify">Every object has a <em>constructor</em> and a <em>destructor</em> just like almost every other quasi-Object-Oriented language. </p>
+<p align="justify">Every Object is pretty easily readable and understandable.</p>
+<p align="justify">When this type of approach is used it becomes very easy to perform a mass clean-up of all instances of all objects that were created while a page is active using the onUnload event. This means you can avoid the possibility of memory leaks from your JavaScript code in the form of <em>Closures</em>.  </p>
+<p align="justify"><em>Closures</em> are JavaScript constructs in which a global variable references an Object that contains a local variable that references a global variable. The most common way to make <em>Closures</em> without realizing it is in the form of event handlers. Event handlers typically reference global objects known as functions. Event handler functions tend to contain local variables that may reference global variables and before you can <em>shizzam</em> you have created a Closure. Closures remain allocated in RAM even after the page from which they were spawned has been removed from the browser. Closures remain in memory long after the browser has been closed. This is the weakness of reference counting system that perform garbage collection.</p>
+<p align="justify">When well-formed objects are used and destructed during the onUnload event there might be less of a chance of Closures being formed but it does not remove all possible Closures. If you think your JavaScript code is leaking memory then it is probably due to Closures being formed and then not being GC'd.</p>
+<p align="justify">Closures can also happen in ColdFusion and when they happen they will remain in memory until the server is rebooted. Of course, when Scopes time-out they tend to help keep Closures to a minimum.  </p>
+<p align="justify"><strong>And now for yet another shameless plug</strong> </p>
+<p align="justify"><strong>Geonosis&trade;</strong>, an up and coming future product, uses all the tricks and techniques I have learned over the past 10+ yrs of my personal ColdFusion development experience as well as my past 30 years of software development expertise. </p>
+<p align="justify">Development of    <strong>The Rabid CF Developer's AJAX Framework</strong> is proceeding nicely. I am working out the final details on how-to bootstrap the system using the minimum amount of JavaScript code possible meanwhile maintaining 100% privacy for all JavaScript the system uses. I will try to publish the first sample application that is being created using <strong>Rabid_AJAX&#8482;</strong> just as soon as it has been completed and time permits. </p>
+<p align="justify">Stay tuned for more exciting <strong>Geonosis&trade;</strong> blog posts as development continues to march right along. </p>
+<p align="justify"><strong>Geonosis&trade;</strong> Version 1.0 - <a href="http://rayhorn.contentopia.net/blog/downloads/Geonosis_v1.zip" target="_blank">You can download Geonosis&trade; here</a>. </p>

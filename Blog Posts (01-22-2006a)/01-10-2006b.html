@@ -1,0 +1,82 @@
+<link href="style.css" rel="stylesheet" type="text/css" /><strong>Geonosis&trade;</strong> Version 1.0 - <a href="http://rayhorn.contentopia.net/blog/downloads/Geonosis_v1.zip" target="_blank">You can download Geonosis&trade; here</a>.
+<br><br>
+<p align="justify"><strong>Apparently CFMX 7 needs the onSessionEnd Event method to be Coded using &lt;tag&gt; script rather than &lt;cfscript&gt;  </strong> </p>
+<p align="justify">I have been chasing-down a subtle memory leak that has been most annoying with my CF Server. No, I am not suggesting CFMX 7 has a &quot;memory leak&quot; in and of itself. What I am suggesting is that CF needs the onSessionEnd Event method to be coded using &lt;tag&gt; script rather than &lt;cfscript&gt;. </p>
+<table width="600" border="1" cellpadding="-1" cellspacing="-1" class="code">
+  	<tr>
+		<td align="center" bgcolor="silver"><strong>The Code that Fails to perform onSessionEnd (Memory Leak) </strong></td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+<table width="100%" border="0" cellspacing="-1" cellpadding="-1" class="code"><tr><td>&nbsp;&nbsp;function&nbsp;onSessionEnd(SessionScope,ApplicationScope)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;try&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;SessionScope.ended&nbsp;=&nbsp;now();&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;SessionScope.sessionLength&nbsp;=&nbsp;-1;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(IsDefined("SessionScope.started"))&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SessionScope.sessionLength&nbsp;=&nbsp;TimeFormat(SessionScope.ended&nbsp;-&nbsp;SessionScope.started,&nbsp;"H:mm:ss");&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(NOT&nbsp;IsDefined("Application.sessions"))&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Application.sessions&nbsp;=&nbsp;0;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;Application.sessions&nbsp;=&nbsp;Application.sessions&nbsp;-&nbsp;1;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;this.cf_log('Session&nbsp;#SessionScope.sessionid#&nbsp;ended.&nbsp;Length:&nbsp;#SessionScope.sessionLength#&nbsp;Active&nbsp;sessions:&nbsp;#Application.sessions#');&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(Any&nbsp;e)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;this.cf_log('ERROR&nbsp;::&nbsp;onSessonEnd&nbsp;::&nbsp;[#explainErrorWithStack(e,&nbsp;false)#]');&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td></td></tr>
+</table>
+	  </td>
+    </tr>
+</table>
+<p>&nbsp;</p>
+<table width="600" border="1" cellpadding="-1" cellspacing="-1" class="code">
+  	<tr>
+		<td align="center" bgcolor="silver"><strong>The Code that properly performs the onSessionEnd (No Memory Leak) </strong></td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+<table width="100%" border="0" cellspacing="-1" cellpadding="-1" class="code"><tr><td>&nbsp;&lt;cffunction&nbsp;name="onSessionEnd"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfargument&nbsp;name&nbsp;=&nbsp;"SessionScope"&nbsp;required=true/&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfargument&nbsp;name&nbsp;=&nbsp;"AppScope"&nbsp;required=true/&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfset&nbsp;var&nbsp;sessionLength&nbsp;=&nbsp;TimeFormat(Now()&nbsp;-&nbsp;SessionScope.started,&nbsp;"H:mm:ss")&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cflock&nbsp;name="AppLock"&nbsp;timeout="5"&nbsp;type="Exclusive"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&lt;cfif&nbsp;(NOT&nbsp;IsDefined("Arguments.AppScope.sessions"))&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;cfset&nbsp;ApplicationScope.sessions&nbsp;=&nbsp;0&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&lt;/cfif&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&lt;cfset&nbsp;Arguments.AppScope.sessions&nbsp;=&nbsp;Arguments.AppScope.sessions&nbsp;-&nbsp;1&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;/cflock&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cflog&nbsp;file="#Arguments.AppScope.applicationName#"&nbsp;type="Information"&nbsp;text="Session&nbsp;#Arguments.SessionScope.sessionid#&nbsp;ended.&nbsp;Length:&nbsp;#sessionLength#&nbsp;<br>Active&nbsp;sessions:&nbsp;#Arguments.AppScope.sessions#"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/cffunction&gt;&nbsp;</td></tr>
+<tr><td></td></tr>
+</table>
+	  </td>
+    </tr>
+</table>
+<p>Okay so what's the difference between both representations of the onSessionEnd event method ? Other than some minor differences that should not cause something as severe as a &quot;memory leak&quot; I certainly cannot tell.</p>
+<p>I tested the code that works on my development laptop (64-bit Turion 1.8 Ghz with 1.5 GB RAM) using a Session time-out of 5 minutes so I could more easily determine if sessions were in-fact being terminated. Just as soon as I swapped-out the failing code for the code that works I could see the active session count go up and then down again as sessions came to life and then were retired properly.</p>
+<p>Now, in all fairness, I have no idea if Macromedia ever designed or intended &lt;cfscript&gt; to be used as a primary way to code the Application.CFC file so for all I know it was never intended that the onSessionEnd method ever be coded using &lt;cfscript&gt;. Aside from investigating alternate coding styles as my general modus-operandi seeing how I am the <strong>Rabid CF Developer</strong> and all and I can't hardly maintain my &quot;<em>rabid</em>&quot; state unless I am coding like there is no tomorrow. So it seems I stumbled onto a rather serious problem we should all try to avoid like the measles. </p>
+<p>One more wierd side-effect was that it seems the onApplicationEnd event method was also not firing because I did have the Application time-out set at 1 day so I would have though the Application Scope would have been retired at-least once every 24 hours which should also have retired all associated Session Scope but apparently this was not happening.</p>
+<p>Does the entire Application.CFC have to be coded using &lt;tag&gt; script rather than &lt;cfscript&gt; ? Only time will tell - unless someone can point me at a definitive reference document that can tell me for sure. At this point, common-sense suggests one would want to code the entire Application.CFC using &lt;tag&gt; script just to be on the safe-side however I do find it easier to code using &lt;cfscript&gt; and I think &lt;cfscript&gt; code is easier on the eyes too. Needless to say, I will be keeping my eyes on my Application logs to see whether or not active sessions are being retired as specified and if necessary I will recode more of my Application.CFC using &lt;tag&gt; script.</p>
+<p><strong>And now for yet another shameless plug</strong> </p>
+<p align="justify"><strong>Geonosis&trade;</strong>, an up and coming future product, uses all the tricks and techniques I have learned over the past 10+ yrs of my personal ColdFusion development experience as well as my past 30 years of software development expertise. </p>
+<p align="justify">And for an update on <strong>Geonosis&trade;</strong> and the <strong>The Rabid CF Developer's AJAX Framework&trade;</strong></p>
+<p align="justify"><strong>Geonosis&trade;</strong> development has been placed on-hold to allow me time to investigate alternate architectures for my AJAX Interfaces I have been using lately. I mean just how &quot;<em>rabid</em>&quot; might I be if I were to blindly go along coding the same old way all the time, huh ?!? </p>
+<p align="justify">I think I am onto something seriously cool and powerful now.</p>
+<p align="justify">I have a very fast, very powerful AJAX Framework now that allows for the greatest level of flexibility possible in that it allows for xmlHttpRequest() or not; it can prefer to use whatever variety of xmlHttpRequest() might be available using no less than 3 alternate methods for doing so and it will default to using &lt;IFRAME&gt; or &lt;ILAYER&gt; in case the preferred method fails to work as desired.</p>
+<p align="justify">Of the various AJAX Frameworks I have used lately I know of none that will automatically default to using the &lt;IFRAME&gt;   method whenever the xmlHttpRequest() method cannot be used due to browser version problems. Of those that can use the &lt;IFRAME&gt; method as an alternative I know of none others than can use the &lt;ILAYER&gt; method. Of those AJAX Frameworks that can use xmlHttpRequest() I know of none other that will try to use any of the three known ways of using the xmlHttpRequest() method of communication.</p>
+<p align="justify">So get ready to feast your eyes on <strong>The Rabid CF Developer's AJAX Framework&trade;</strong> aka. <strong>Rabid_AJAX&trade;</strong> </p>
+<p align="justify">I will be making the final version available soon as I get some time to do this. In the meantime, I am blogging all about it.</p>
+<p align="justify">Will  <strong>Rabid_AJAX&trade;</strong> support or use <strong>JSON</strong> ? </p>
+<p align="justify"><strong>Rabid_AJAX&trade;</strong> won't use <strong>JSON</strong> right out of the box because <strong>Rabid_AJAX&trade;</strong> features an entirely different way to communicate data from the server back to the client. Of course if you really love <strong>JSON</strong> then by all means use it - you can use whatever technique or method you wish as long as the content is passed back via the default JavaScript encapsulation technique. If <strong>JSON</strong> were to be used it would require converting JavaScript encapsulated JSON code back into the JavaScript data types which would end up being quite a bit slower than the default method that ships with <strong>Rabid_AJAX&trade;</strong>.</p>
+<p align="justify">I don't have a fancy-shmancy name of the server-to-client data packaging method<strong>Rabid_AJAX&trade;</strong>uses but I know it is much faster than <strong>JSON</strong> and much faster than <strong>XML</strong> and far more useful than any other method of technique I have ever heard or read about.   </p>
+<p align="justify"><strong>Rabid_AJAX&trade;</strong> uses a native-JavaScript technique that allows for data to be packaged using JavaScript in such a way so as to allow data or behaviors to be passed back to the client as the programmer desires. This allows for better encapsulation of behaviors and faster data handling than might be possible otherwise.</p>
+<p align="justify"><strong>Rabid_AJAX&trade;</strong><strong> </strong>uses a combination of CF Query and Struct Objects on the server to encapsulate the values passed from the client to the server during an AJAX session. The programmer is then able to access the values passed from the client using a standard interface regardless of which AJAX communication technique that was used to initiate the AJAX Session. Some may find it easier to use Query of Queries to access the values that were passed from the client or it may be easier to access these values using a CF Struct - either way this is a quick and easy interface.</p>
+<p align="justify">When it comes time to communicate data and behaviors back to the client at the end of the AJAX Session the programmer simply places the data and behaviors into a CF Query Object and then the <strong>Rabid_AJAX Framework&trade;</strong><strong></strong><strong> </strong> does the rest and packages the contents of the CF Query Object into a glob of JavaScript that is transmitted down to the client and executed using an &quot;eval()&quot; statement. The callback function is coded as a JavaScript statement rather than a simply JavaScript function name so that a callback might be coded as &quot;performCallBack(qObj)&quot; which executes the JavaScript function called &quot;performCallBack&quot; into which is passed the standard JavaScript Query Object that contains the contents of the CF Query Object that was used to pass data and behaviors back to the client. The qObj JavaScript Query Object is then made persistent as a global variable so it will always exist and be available to the client between AJAX Sessions.</p>
+<p align="justify">Parameters are passed into the AJAX Session in a manner that allows for variable arguments which means the programmer is completely free to reference as many or as few parameters as is desired.</p>
+<p align="justify">Behaviors can be passed to the client in the form of JavaScript statements that can be coded as Javascript functions or whole JavaScript script files, if desired. It is left in he hands of the programmer to determine what content is considered to be &quot;<em>executable</em>&quot; and what content is considered to be &quot;<em>data</em>&quot; but then isn't this the way it always is - programmers decide how to do things with no constraints other than whether or not the code runs.</p>
+<p align="justify">The  <strong>Rabid_AJAX Framework&trade;</strong> is the result of more than 18 months of work and research into the best AJAX Coding techniques known to mankind or at-least those that are known to exist from my perspective. Whenever I come across better techniques and methods I will incoproate them into th<strong>e</strong> <strong>Rabid_AJAX Framework&trade;</strong> but only when they improve the way AJAX works. </p>
+<p align="justify">Stay tuned for more exciting <strong>Geonosis&trade;</strong> and <strong>Rabid_AJAX Framework&trade;</strong> blog posts as development continues to march right along. Obviously the existing <strong>Geonosis&trade;</strong> code will have to be re-engineered to use the <strong>Rabid_AJAX Framework&trade;</strong> just as soon as this can be done. I will be focusing more on getting a FREE Blog Service online a.s.a.p. so I can get my excess bandwidth and hard drive space used for something other than just sitting there. </p>
+<p align="justify">&nbsp;</p>

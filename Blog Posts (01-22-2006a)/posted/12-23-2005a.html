@@ -1,0 +1,18 @@
+<strong>Geonosis</strong> Version 1.0 - <a href="http://rayhorn.contentopia.net/blog/downloads/Geonosis_v1.zip" target="_blank">You can download Geonosis here</a>.
+<br><br>
+<p align="justify">
+<strong>Geonosis</strong> Version 1.1 - Refactoring the GeonosisObject.
+</p>
+<p align="justify">
+The time has come to get serious about the development of <strong>Geonosis</strong> by creating an abstract ColdFusion Object that will handle all database interactions for all Objects that may be stored in the database.
+</p>
+<p align="justify">
+The <strong>GeonosisObject</strong> ColdFusion Object will read and write Objects in the Database.  Each instance of a <strong>GeonosisObject</strong> will have an ObjectName as well as Attributes and links to other objects.  Whenever a <strong>GeonosisObject</strong> is read from the Database it will have the option of also reading linked objects or not so as to allow the system to run as quickly as possible.
+</p>
+<p align="justify">
+It will be necessary to create another CF Object that will be called <strong>GeonosisObjectBag</strong> which will be used to hold onto all the instances of <strong>GeonosisObject(s)</strong> that are read from the database.  Each instance of a <strong>GeonosisObject</strong> will have a <strong>dirtyFlag</strong>; the <strong>dirtyFlag</strong> when "true" will tell the <strong>GeonosisObjectBag</strong> to write the specific instance of a <strong>GeonosisObject</strong> to the database so that the ObjectName can be changed if desired.  Object Attributes will also be given <strong>dirtyFlag(s)</strong> so that Attributes can be written back to the Database whenever their values or metadata need to be changed.
+</p>
+<p align="justify">
+The <strong>Geonosis User Manager</strong> will be recoded to use this new way of handling <strong>GeonosisObject(s)</strong>.  Development has ground to a slow crawl what with having to hand-code a lot of SQL Code just to support the specific functionlaity of the <strong>Geonosis User Manager</strong>.  Personally I would rather keep the system as fast and efficient as possible by hand coding all the SQL Code but development would take a lot more time than might be desired.  The goal now is to abstract enough functionality to allow development to move along as fast as possible meanwhile balancing performance with development progress.  This is always the way of development; balance how long it takes to produce the code with how efficient the code is at runtime.
+</p>
+

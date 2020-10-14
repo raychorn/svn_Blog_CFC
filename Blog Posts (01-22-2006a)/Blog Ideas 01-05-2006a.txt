@@ -1,0 +1,64 @@
+DONE * BlogCFC 4.0.2 Look and Feel enhancement (pods without borders)
+DONE * The very last Application Name you will ever have to code !
+DONE * onSessionEnd when coded using <CFSCRIPT> fails to properly show Sessions as terminated and sessions seem to accumulate in RAM over-time.
+DONE * End-to-End JavaScript Programmer (Well-Formed Objects)
+DONE * Rabig_BlogCFC bugs: Comments editor needs to be DHTML - no more pop-ups; fix comments at bottom of emails (HTML - links not showing as links).
+DONE * Rabig_BlogCFC: Fix the bug when a new post is "saved" - the main page should refresh and the save/cancel button should be disabled.
+DONE * Rabig_BlogCFC: Convert Edit pop-up into DHTML iFRAME, Add intra-page navigation from top->bottom of posts, etc.
+
+Dynamic JavaScript Definitions - use object format from JSAPI Gateway source.
+
+Rabig_BlogCFC: Provide way to combine categories.
+
+Rabig_BlogCFC: Provide way to expand/contract posts using headline DHTML controls - begin compressed.
+
+Rabig_BlogCFC: Complete Coding the Post to separate HTML file for easier submission to Google.
+
+Rabig_BlogCFC: Code the ability to create new blogs via sub-folders and reuse code. Db already supports this.
+
+Rabig_BlogCFC: Code the ability to create sub-domains via Registry edits.
+
+Rabig_BlogCFC: Code the ability to allow people to sign-up for their own FREE Blog-Space.
+
+Rabig_BlogCFC: Code the ability to allow people to edit the layout for their osn Blog-Space.
+
+Rabig_BlogCFC: Code the Accounting system to allow people to pay using PayPal to have adverts removed.
+
+* Switch/case using <CFSCRIPT> and other <CFSCRIPT> musings.
+
+* IIS versus Apache and Development Versus Production
+
+mod_gzip and mod_rewrite.dll for IIS and Apache.
+
+NetBeans ?!?
+
+* Latest bug fixes for BlogCFC 4.0.2 - Pinger code wrappered with <cftry> and fixed bug in the way the blog page is refreshed...
+
+* BlogCFC Code Formatter Snap-In (updated to use class="code") by default.
+
+* BlogCFC - Edit Comments (new feature)
+
+* BlogCFC/AJAX - recode the whole Blog using Rabid_AJAX.
+
+* Rabid_AJAX - JavaScript musings - Once a JavaScript object is created it remains "alive" for as long as the browser is open
+on the page whereby the Object was created.  This just might mean it would be possible to use JavaScript as the
+"language" one could use to communicate data from the server to the client with no performance penalty other than
+the time it takes the JavaScript compiler to parse and execute the code one transmits to the client.  While JSON
+has some interesting points to offer one must still parse the JSON code into usable objects but I say, "why not
+let the browser do this for us?".
+
+* AJAX Framework - 01-09-2006a from SVN - Completed the Suite of tools that includes full support for xmlHtpRequest cross-browsers.
+* AJAX Framework - 01-09-2006b from SVN - Added better debugging support that features a slide-out debugging panel; and CallBack support.
+
+* Rabid_AJAX (Rabid CF Dev's AJAX) - Outline musings about Object-Oriented JavaScript Interface for AJAX that provides
+the ability to encapsulate behaviors using JavaScript Objects.
+
+* SSL Cert Setup for Apache 2.0.55 (01-07-2006)
+
+* BlogCFC and making it into an online service everyone can use (01-06-2006 - done!)
+* Add the SBC Design Doc in the downloads section (01-06-2006)
+* The Problem with ColdFusion Objects and How-To Break the ColdFusion Method Inheritance Model or Is there such a Model to Break at all ?!?
+* SBC Docs and Experiences
+* Marquee Download into a Product
+* Apache CFMX Setup Util into a Product
+* ColdFusion compile.cmd (make this into a Winbatch .EXE with Nagware people can pay for).

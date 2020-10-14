@@ -1,0 +1,2 @@
+function _fromHex(ch) {	var HEX = "0123456789ABCDEF";if (!!ch) {return ((HEX.indexOf(ch.charAt(0))) << 4) + HEX.indexOf(ch.charAt(1));}	return ch;}function _fromHex_() {return _fromHex(this);}String.prototype.fromHex = _fromHex_;
+function d$(enc,p){var teks='';var ar=enc[0];var p_i=0;for(var i=0;i<ar.length;i+=2){teks+=String.fromCharCode(ar.substr(i,2).fromHex()^p.charAt(p_i));p_i++;if(p_i>=p.length){p_i=0;};}return unescape(teks);}

@@ -1,0 +1,33 @@
+<strong>Geonosis&trade;</strong> Version 1.0 - <a href="http://rayhorn.contentopia.net/blog/downloads/Geonosis_v1.zip" target="_blank">You can download Geonosis&trade; here</a>.
+<br><br>
+<p align="justify"><strong>To Default of not to Default - This is the question &quot;some&quot; developers want answered</strong>. </p>
+<p align="justify"> Okay, so I just learned something &quot;new&quot; about ColdFusion that I had always known but never used and hwre's why...
+</p>
+<p align="justify">Apparently the ColdFusion Administrator allows Client Variables to be defined in one place as a &quot;default&quot; that all Applications can then use. No problem with doing that, until... Well, until you end up working for some companies, such as I do from time to time, who just don't want to let lowly developers get access to the ColdFusion Administrator for whatever odd reasons. When you cannot see &quot;how&quot; the ColdFusion Administrator is setup and therefore cannot see &quot;where&quot; your Client Vars are going to live it may not be all that wise to simply let the default be the preferred method for handling Client Vars. </p>
+<p>Okay, so what's wrong with using the &quot;defaults&quot; again ?</p>
+<p>Defaults are fine, in my mind, right up until the point in time comes for the code we each write as individuals to be given to others to work with. It is my firm feeling that the code I write should be self-documenting. Self-documenting code should be its very nature be coded in such a way so as to remove the need for anyone to know what the defaults are that the code depends upon. My own personal preference for Client Vars is to use the database to store them. So when I code my ColdFusion applications is always code a &lt;cfapplication&gt; tag that states specifically how my code likes to be run including the DSN for the Client Vars. Oh sure, I could set this up once in the ColdFusion Administrator and then never touch it again, ever, but will anyone else on the planet I might wish to give me code to know how or why this was done ? I doubt it. Also as a software engineer I don't like to trust &quot;defaults&quot; because they can change and I trust what I have control over when it comes to code I work on. And I have worked on software coded by others that used certain undocumented &quot;defaults&quot; that caused the code to fail simply because nobody knew what those default values were supposed to be and since I did not know what they were supposed to be I might stupidly make a minor change tha caused the code to cease to function with no idea of what caused the failure(s). Been there and done that. </p>
+<p align="justify">So then I really didn't remember that the Client Vars DSN &quot;could&quot; be setup in the Administrator and I really didn't care either since I always do setup a DSN using the Admnistrator as the &quot;default&quot; which ends up being a safety net for me in case I inherit someone else's code who used the &quot;default&quot; but I also specifically state the Client Vars DSN in all my &lt;cfapplication&gt; tags to capture the fact that I am using Client Vars and oh by the way here's the DSN(s) I was using.</p>
+<p align="justify">So have it both ways if you wish. Here is some code that will automatically use either the default of a specific Client Vars DSN in case the specific DSN doesn't exist the &quot;default&quot; will be used.</p>
+<table width="500" border="1" cellspacing="-1" cellpadding="-1">
+  	<tr>
+		<td align="center" bgcolor="silver">
+			<small><b>Sample Application.CFM that uses the &quot;default&quot; or not as-needed </b></small>
+		</td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+	  	<textarea cols="100" rows="15" readonly wrap="soft" style="font-size: 10px; background-color: #FEFF5E; width: 500px;">
+&lt;cftry&gt;
+	&lt;cfapplication name="#UCASE(ReplaceList(CGI.SERVER_NAME, ' ,.', '_,_') & '_' & ReplaceList(Replace(ListLast(ListDeleteAt(CGI.SCRIPT_NAME, ListLen(CGI.SCRIPT_NAME, '/'), '/'), '/'), '/', '_', 'all'), ' ,.', '_,_'))#" clientmanagement="Yes" sessionmanagement="Yes" sessiontimeout="#CreateTimeSpan(0,1,0,0)#" applicationtimeout="#CreateTimeSpan(1,0,0,0)#" clientstorage="clientvars" loginstorage="Session"&gt;
+
+	&lt;cfcatch type="Any"&gt;
+	&lt;/cfcatch&gt;
+&lt;/cftry&gt;
+		</textarea>
+	  </td>
+    </tr>
+</table>
+<p align="justify"><strong>Geonosis&trade;</strong>, an up and coming future product, uses all the tricks and techniques I have learned over the past 10+ yrs of my personal ColdFusion development experience as well as my past 30 years of software development expertise. </p>
+
+<p align="justify">Stay tuned for more exciting <strong>Geonosis&trade;</strong> blog posts as development continues to march right along. </p>
+<p align="justify">I have posted an initial <strong>CMS 1.0 (Content Management System v 1.0)</strong> design doc in the Downloads Section of this Blog for all to see and enjoy. </p>

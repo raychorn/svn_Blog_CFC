@@ -1,0 +1,34 @@
+<link href="style.css" rel="stylesheet" type="text/css" />
+<strong>Geonosis&trade;</strong> Version 1.0 - <a href="http://rayhorn.contentopia.net/blog/downloads/Geonosis_v1.zip" target="_blank">You can download Geonosis&trade; here</a>.
+<br><br>
+<p align="justify"><strong>The Very Last Applicaton Name you will ever have to code </strong> </p>
+<p align="justify">This is it ! One size fits all. This Application Name need only be coded exactly ONCE and never again regardless of where your Application is installed or used. This Application Name is guaranteed to be unique and descriptive. This Application Name, if used when using the &lt;cflog&gt; tag will also always be clearly visible among the deafening list of other Application Names that may inhabit the Log List within your ColdFusion Administrator. </p>
+<table width="600" border="1" cellpadding="-1" cellspacing="-1" class="code">
+  	<tr>
+		<td align="center" bgcolor="silver"><strong>The Very Last Applicaton Name you will ever have to code</strong></td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+<table width="100%" border="0" cellspacing="-1" cellpadding="-1" class="code"><tr><td>&nbsp;&lt;cfscript&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;if&nbsp;(NOT&nbsp;IsDefined("This.name"))&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;aa&nbsp;=&nbsp;ListToArray(CGI.SCRIPT_NAME,&nbsp;'/');&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;subName&nbsp;=&nbsp;aa[1];&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;if&nbsp;(Len(subName)&nbsp;gt&nbsp;0)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;subName&nbsp;=&nbsp;'_'&nbsp;&&nbsp;subName;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;myAppName&nbsp;=&nbsp;right(reReplace(CGI.SERVER_NAME&nbsp;&&nbsp;subName,&nbsp;"[^a-zA-Z]","_","all"),&nbsp;64);&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;myAppName&nbsp;=&nbsp;ArrayToList(ListToArray(myAppName,&nbsp;'_'),&nbsp;'_');&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;This.name&nbsp;=&nbsp;UCASE(myAppName);&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/cfscript&gt;&nbsp;</td></tr>
+<tr><td></td></tr>
+</table>
+	  </td>
+    </tr>
+</table>
+<p><strong>And now for yet another shameless plug</strong> </p>
+<p align="justify"><strong>Geonosis&trade;</strong>, an up and coming future product, uses all the tricks and techniques I have learned over the past 10+ yrs of my personal ColdFusion development experience as well as my past 30 years of software development expertise. </p>
+<p align="justify"><strong>Geonosis&trade;</strong> will use the <strong>The Rabid CF Developer's AJAX Framework</strong> just as soon as I have completed my work on the next generation version of this exciting AJAX Framework . Oh, by the by, I have completed the coding for <strong>The Rabid CF Developer's AJAX Framework</strong> that supports a cross-browser usage of the <strong>xmlHttpRequest()</strong> function as well as cross-browser usage of the <strong>iFrame/iLayer</strong> technique with automatic failover from the former to the latter whenever the former cannot be used due to browser imcompatibility.  <strong>The Rabid CF Developer's AJAX Framework</strong> now also features full support for <strong>GET</strong>s as well as <strong>POST</strong>s with automatic switching from the former to the latter whenever the amount of data being pushed in a single <strong>GET</strong> exceeds roughly 2000 bytes.   <strong>The Rabid CF Developer's AJAX Framework</strong> also features a very nice <strong>slide-out Debugging Panel</strong> that allows for easy debugging of each AJAX Request as viewed from the server's perspective. And the best feature of all is the fact that CallBacks and variabe length parameters are completely optional which means the programmer is completely 100% FREE to use whatever programming constructs may be desirable when coding the server-side of the AJAX system. The out-of-the-box experience is coded to place all calling parameters into a ColdFusion Query Object AND a ColdFusion Struct Object for easier usage by the programmer. Whatever data the programmer wishes to transmit back to the calling JavaScript code is placed into a ColdFusion Query Object which is turned into a JavaScript Query Object that mimics the structure of the ColdFusion Query Object. But get this,   <strong>The Rabid CF Developer's AJAX Framework</strong> also allows JavaScript code to be transmitted back to the calling JavaScript code which means the programmer is also 100% FREE to hide their JavaScript code within their Application or within their Databases never visible to those who like to sift-through their cache's for little tidbits of code and such. Yes folks,   <strong>The Rabid CF Developer's AJAX Framework</strong> pretty much does it all for you with 100% Freedom to use AJAX as you see fit. Anyone who wants to get their hands on the source for this AJAX Monster can make a suitable Donation using the Donation button in return for which I will email them the completed code right from my <strong>SVN Server</strong>. It is my goal to make   <strong>The Rabid CF Developer's AJAX Framework</strong> the absolutely best AJAX Framework in the world, bar none. Any time I read about or hear about any kewl AJAX techniques I might want to use myself I'll add some code to make this AJAX Framework simply cutting edge. And get this,   <strong>The Rabid CF Developer's AJAX Framework</strong> doesn't even use XML at-all. Which means you get nothing but blinding speed from this little gem. All values returned from the server are communicated in the form of JavaScript which means the same interface is used for ALL AJAX server invocation methods using a consistent interface across-the-board. So you want to use CFC's as your AJAX back-end ? No problem, can do easy. So you want to plug-in some fancy XML coding techniques - NO PROBLEM ! Yes folks, the sky is no longer the limit where AJAX is concerned. And best of all, you can code as many <strong>Concurrent AJAX Sessions as you wish</strong> with no limits other than the available client memory and your available bandwidth . All AJAX operations are <strong>100% restartable</strong> and therefore <strong>100% immune to server-side problems</strong>. Heck, if you wanted to you could even code a poor-man's Clustering System using nothing but   <strong>The Rabid CF Developer's AJAX Framework</strong> to marshall all the failovers from server to server to server, etc. </p>
+<p align="justify">Stay tuned for more exciting <strong>Geonosis&trade;</strong> blog posts as development continues to march right along. </p>
+<p align="justify">&nbsp;</p>

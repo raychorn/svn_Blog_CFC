@@ -1,0 +1,255 @@
+.margins {
+	LEFT: 2px; VISIBILITY: visible; PADDING-BOTTOM: 4px; PADDING-TOP: 4px; POSITION: absolute; TOP: 0px
+}
+.Error {
+	FONT-SIZE: 9pt; COLOR: #ff3333; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.CaptionText {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; PADDING-BOTTOM: 4px; PADDING-TOP: 4px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.ValueText {
+	PADDING-LEFT: 5px; FONT-SIZE: 10pt; MARGIN-BOTTOM: auto; PADDING-BOTTOM: 5px; LINE-HEIGHT: normal; PADDING-TOP: 5px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.SizeMain {
+	WIDTH: 740px
+}
+.HdrText {
+	FONT-WEIGHT: bold; FONT-SIZE: 11pt; PADDING-BOTTOM: 2px; LINE-HEIGHT: normal; PADDING-TOP: 2px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: center
+}
+.PageHdrText {
+	FONT-WEIGHT: bold; FONT-SIZE: 11pt; PADDING-BOTTOM: 2px; COLOR: #ffffff; LINE-HEIGHT: normal; PADDING-TOP: 2px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: center
+}
+.FooterText {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; PADDING-BOTTOM: 2px; COLOR: #0000ff; LINE-HEIGHT: normal; PADDING-TOP: 2px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.ProfileCaptionText {
+	FONT-WEIGHT: bold; FONT-SIZE: 9px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.ProfileCaptionValue {
+	FONT-WEIGHT: bold; FONT-SIZE: 9px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.SectionHeaderText {
+	FONT-WEIGHT: bold; FONT-SIZE: 9px; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+A {
+	TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #cc0000; TEXT-DECORATION: underline
+}
+.ItemBotMargin {
+	MARGIN-BOTTOM: 6px
+}
+.ItemTopMargin {
+	MARGIN-TOP: 6px
+}
+.ItemBothMargin {
+	MARGIN-TOP: 6px; MARGIN-BOTTOM: 6px
+}
+.smaller {
+	FONT-WEIGHT: normal; FONT-SIZE: 9px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.novis {
+	VISIBILITY: hidden
+}
+.ResHdr {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: underline
+}
+.ResTxt {
+	FONT-WEIGHT: normal; FONT-SIZE: 11px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.ResTitle {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 13px; PADDING-BOTTOM: 3px; PADDING-TOP: 3px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.ResItemSpace {
+	HEIGHT: 33px
+}
+.leftmargin {
+	LEFT: 4px; POSITION: relative
+}
+.hidden {
+	DISPLAY: none
+}
+.BigValueText {
+	FONT-SIZE: 12pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 0px; LINE-HEIGHT: normal; PADDING-TOP: 0px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.SectionColor {
+	FONT-WEIGHT: bold; FONT-SIZE: 11pt; COLOR: #ffffff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #814eae
+}
+.SectionText {
+	FONT-WEIGHT: bold; FONT-SIZE: 11pt; PADDING-BOTTOM: 2px; LINE-HEIGHT: normal; PADDING-TOP: 2px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: center
+}
+.TblBorder {
+	BORDER-RIGHT: #814eae 1px solid; BORDER-TOP: #814eae 1px solid; BORDER-LEFT: #814eae 1px solid; BORDER-BOTTOM: #814eae 1px solid
+}
+.RowBorder {
+	BORDER-RIGHT: #e3d8ed 1px; BORDER-TOP: #e3d8ed 1px; BORDER-LEFT: #e3d8ed 1px; BORDER-BOTTOM: #e3d8ed 1px solid
+}
+.NoTopMargin {
+	MARGIN: 0px
+}
+.RowColor {
+	BACKGROUND-COLOR: #e3d8ed
+}
+.RowColorLight {
+	BACKGROUND-COLOR: #f4f4f4
+}
+.SmallerCaption {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; PADDING-BOTTOM: 4px; PADDING-TOP: 4px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.SmallTxtGrayBg {
+	FONT-WEIGHT: normal; FONT-SIZE: 9pt; PADDING-BOTTOM: 2px; LINE-HEIGHT: normal; PADDING-TOP: 2px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+.SmallTxtBox {
+	FONT-WEIGHT: normal; FONT-SIZE: 9pt; PADDING-BOTTOM: 2px; LINE-HEIGHT: normal; PADDING-TOP: 2px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.visible {
+	VISIBILITY: visible
+}
+.smallerbold {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.BigValueTextBold {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 0px; LINE-HEIGHT: normal; PADDING-TOP: 0px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.CaptionTextSmaller {
+	FONT-WEIGHT: bold; FONT-SIZE: 8pt; PADDING-BOTTOM: 4px; PADDING-TOP: 4px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.ValueTextBold {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 10pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 5px; LINE-HEIGHT: normal; PADDING-TOP: 5px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.ValueTextDisclaimer {
+	FONT-SIZE: 8pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 0px; COLOR: #666666; LINE-HEIGHT: normal; PADDING-TOP: 0px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.SectionColorLight {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: #ff3300; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #ffffff
+}
+.HdrTextPurpleLight {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt; PADDING-BOTTOM: 2px; LINE-HEIGHT: normal; PADDING-TOP: 2px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #e3d8ed; TEXT-ALIGN: center
+}
+.listspacing {
+	MARGIN-BOTTOM: 4pt
+}
+LI {
+	MARGIN-BOTTOM: 4pt
+}
+.SmallerCaptionWhite {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; PADDING-BOTTOM: 4px; COLOR: #ffffff; PADDING-TOP: 4px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.ValueTextBoldGray {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 15px; COLOR: #868686; LINE-HEIGHT: normal; PADDING-TOP: 0px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; WHITE-SPACE: normal; TEXT-ALIGN: left
+}
+.ValueTextBoldPackage {
+	FONT-WEIGHT: bold; FONT-SIZE: 9pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 0px; LINE-HEIGHT: normal; PADDING-TOP: 0px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+.ValueTextBoldBlue {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 15px; COLOR: #003399; LINE-HEIGHT: normal; PADDING-TOP: 0px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+.ValueTextNormalBlue {
+	FONT-WEIGHT: normal; FONT-SIZE: 9pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 15px; COLOR: #003399; LINE-HEIGHT: normal; PADDING-TOP: 0px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+.TD15Bottom {
+	FONT-WEIGHT: normal; FONT-SIZE: 9pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 15px; COLOR: #003399; LINE-HEIGHT: normal; PADDING-TOP: 0px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+.TD15Top {
+	FONT-WEIGHT: normal; FONT-SIZE: 9pt; MARGIN-BOTTOM: 6px; COLOR: #003399; LINE-HEIGHT: normal; PADDING-TOP: 15px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+.FieldName {
+	BORDER-RIGHT: #3366cc thin solid; BORDER-TOP: #3366cc thin solid; VISIBILITY: visible; BORDER-LEFT: #3366cc thin solid; BORDER-BOTTOM: #3366cc thin solid; BACKGROUND-COLOR: #e6ecf9
+}
+.Buttom {
+	BORDER-RIGHT: medium none; BORDER-TOP: medium none; VISIBILITY: visible; BORDER-LEFT: medium none; BORDER-BOTTOM: medium none
+}
+.TD10Bottom {
+	FONT-WEIGHT: normal; FONT-SIZE: 9pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 10px; COLOR: #333333; LINE-HEIGHT: normal; PADDING-TOP: 0px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+.TD10Top {
+	FONT-WEIGHT: normal; FONT-SIZE: 9pt; MARGIN-BOTTOM: 6px; COLOR: #003399; LINE-HEIGHT: normal; PADDING-TOP: 10px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+.TD15TopBlueValueText {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; MARGIN-BOTTOM: 6px; COLOR: #003399; LINE-HEIGHT: normal; PADDING-TOP: 15px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+.HdrTextWhiteonBlue {
+	FONT-WEIGHT: bold; FONT-SIZE: 12pt; PADDING-BOTTOM: 2px; COLOR: #ffffff; LINE-HEIGHT: normal; PADDING-TOP: 2px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #4c4a64; TEXT-ALIGN: center
+}
+.HdrTextWhiteonBlueLight {
+	FONT-WEIGHT: normal; FONT-SIZE: 9px; PADDING-BOTTOM: 2px; COLOR: #ff0000; LINE-HEIGHT: normal; PADDING-TOP: 2px; FONT-STYLE: normal; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #d7ebff; TEXT-ALIGN: center
+}
+.HdrTextWhiteonBlueSmall {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; PADDING-BOTTOM: 2px; COLOR: #ffffff; LINE-HEIGHT: normal; PADDING-TOP: 2px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #0066cc; TEXT-ALIGN: left
+}
+.RowColorLightGray {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 10px; FONT-WEIGHT: bold; FONT-SIZE: 10pt; PADDING-BOTTOM: 8px; PADDING-TOP: 0px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #f8f8f8
+}
+.RowColorWhite {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 10px; FONT-WEIGHT: bold; FONT-SIZE: 10pt; PADDING-BOTTOM: 8px; PADDING-TOP: 0px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #ffffff
+}
+.HdrTextWhiteonYellowLight {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; PADDING-BOTTOM: 2px; COLOR: #000000; LINE-HEIGHT: normal; PADDING-TOP: 2px; FONT-STYLE: normal; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #fff4de; TEXT-ALIGN: center
+}
+.HdrTextWhiteonYellowLightLeft {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; PADDING-BOTTOM: 7px; COLOR: #000000; LINE-HEIGHT: normal; PADDING-TOP: 2px; FONT-STYLE: normal; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #fff4de; TEXT-ALIGN: left
+}
+.ValueTextGrayCopy {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: normal; FONT-SIZE: 10pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 10px; COLOR: #333333; LINE-HEIGHT: normal; PADDING-TOP: 10px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; WHITE-SPACE: normal; TEXT-ALIGN: left
+}
+.ValueBarText {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 10pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 4px; COLOR: #0066cc; LINE-HEIGHT: normal; PADDING-TOP: 4px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+.ValueTextSmall {
+	PADDING-RIGHT: 35px; PADDING-LEFT: 5px; FONT-SIZE: 7pt; PADDING-BOTTOM: 5px; MARGIN: auto; COLOR: #333333; LINE-HEIGHT: normal; PADDING-TOP: 5px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.ValueTextFeaturedEmp {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: normal; FONT-SIZE: 7pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 2px; COLOR: #333333; LINE-HEIGHT: normal; PADDING-TOP: 2px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; WHITE-SPACE: normal; TEXT-ALIGN: left
+}
+.BarHeading {
+	PADDING-LEFT: 10px; FONT-WEIGHT: normal; FONT-SIZE: 16pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 0px; COLOR: #ffffff; LINE-HEIGHT: normal; PADDING-TOP: 0px; FONT-STYLE: normal; FONT-FAMILY: Arial, Helvetica, sans-serif; LETTER-SPACING: 3px
+}
+.BarHeading2 {
+	PADDING-LEFT: 10px; FONT-WEIGHT: normal; FONT-SIZE: 14pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 0px; COLOR: #ffffff; LINE-HEIGHT: normal; PADDING-TOP: 0px; FONT-STYLE: normal; FONT-FAMILY: Arial, Helvetica, sans-serif; LETTER-SPACING: 3px
+}
+.BarHeading3 {
+	FONT-WEIGHT: normal; COLOR: #ffffff; LINE-HEIGHT: normal; FONT-STYLE: normal; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.HdrTextLarge {
+	FONT-WEIGHT: normal; FONT-SIZE: 18pt; PADDING-BOTTOM: 12px; LINE-HEIGHT: normal; PADDING-TOP: 12px; FONT-STYLE: normal; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-ALIGN: center
+}
+.HdrTextWhiteonLightGray {
+	FONT-WEIGHT: bold; FONT-SIZE: 10pt; PADDING-BOTTOM: 2px; COLOR: #000000; LINE-HEIGHT: normal; PADDING-TOP: 2px; FONT-STYLE: normal; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #f2f2f2; TEXT-ALIGN: center
+}
+.BlueBGHdrText {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(images/blue_bar.gif); MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 5px; LINE-HEIGHT: normal; PADDING-TOP: 5px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.BlueBGHdrTextTall {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; BACKGROUND-IMAGE: url(images/blue_bar_tall.gif); MARGIN-BOTTOM: 0px; PADDING-BOTTOM: 0px; LINE-HEIGHT: normal; PADDING-TOP: 0px; BACKGROUND-REPEAT: repeat; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.ValueBarText11 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 10pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 4px; COLOR: #0066cc; LINE-HEIGHT: normal; PADDING-TOP: 4px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: left
+}
+.ValueBarText9 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 9pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 4px; LINE-HEIGHT: normal; PADDING-TOP: 4px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: center
+}
+.ValueBarText8 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-WEIGHT: bold; FONT-SIZE: 8pt; MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 0px; LINE-HEIGHT: normal; PADDING-TOP: 0px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-ALIGN: center
+}
+.smaller8 {
+	FONT-WEIGHT: normal; FONT-SIZE: 9px; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.BlueBGHdrCaption {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(images/blue_bar_tall.gif); MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 8px; LINE-HEIGHT: normal; PADDING-TOP: 8px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.BlueBGHdrValue {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: normal; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(images/gray_bar_tall.gif); MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 5px; LINE-HEIGHT: normal; PADDING-TOP: 5px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.BlueBGHdrCaption3 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(images/blue_bar_tall3.gif); MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 8px; LINE-HEIGHT: normal; PADDING-TOP: 8px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.BlueBGHdrValueGray3 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: normal; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(images/gray_bar_tall3.gif); MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 5px; LINE-HEIGHT: normal; PADDING-TOP: 5px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.BlueBGHdrValueGray4 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: normal; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(images/gray_bar_tall4.gif); MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 5px; LINE-HEIGHT: normal; PADDING-TOP: 5px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+.BlueBGHdrCaption4 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(images/blue_bar_tall4.gif); MARGIN-BOTTOM: 6px; PADDING-BOTTOM: 8px; LINE-HEIGHT: normal; PADDING-TOP: 8px; FONT-STYLE: normal; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}

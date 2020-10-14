@@ -1,0 +1,1 @@
+<cfinclude template="../../org/camden/blog/blog.cfc">

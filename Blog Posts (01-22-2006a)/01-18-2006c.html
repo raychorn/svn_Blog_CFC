@@ -1,0 +1,305 @@
+<link href="style.css" rel="stylesheet" type="text/css" />
+<p align="justify"><strong>And now let's play stump the &quot;Jedi&quot; </strong> </p>
+<p align="justify">Some weeks ago I happened to try to run BlogCFC using an ODBC DataSource and wouldn't you know it good 'ole BlogCFC failed to work and melted down real fast into a nice puddle of error message goo. </p>
+<p align="justify">WTF ? I asked myself. How can the mighty BlogCFC fail so miserably when I knew it was well coded and rock-solid ?!?</p>
+<p align="justify">I have looked at the code for BlogCFC and I know it uses the &lt;cfqueryparam&gt; tag all over the place because doing so is <strong><em>supposed</em></strong> to be a best practice.  I stress the word <strong><em>supposed</em></strong> because as we shall soon see everything that glitters is not necessarily gold.</p>
+<p align="justify">I did some research and 20 short minutes later I had the answer.</p>
+<p align="justify"><strong>And now it's time to hear from Jedi Camden on this thorny technical problem</strong>  </p>
+<p align="justify">Earlier today I happend to run into this problem again so I emailed Jedi Camden to get his feedback on this point because I thought if anyone knew this one for sure it would be him. Read his response below: (this is the exact email he sent me in an unedited form) </p>
+<table width="100%" border="0" cellspacing="-1" cellpadding="-1" class="code"><tr><td>From:&nbsp;Raymond&nbsp;Camden&nbsp;[ray@camdenfamily.com]&nbsp;</td></tr>
+<tr><td>Sent:&nbsp;Wednesday,&nbsp;January&nbsp;18,&nbsp;2006&nbsp;10:02&nbsp;AM&nbsp;</td></tr>
+<tr><td>To:&nbsp;raychorn@hotmail.com&nbsp;</td></tr>
+<tr><td>Subject:&nbsp;Re:&nbsp;Okay&nbsp;Mr.&nbsp;Jedi&nbsp;-&nbsp;Answer&nbsp;me&nbsp;this,&nbsp;IF&nbsp;you&nbsp;can.&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>Sure&nbsp;-&nbsp;the&nbsp;driver&nbsp;has&nbsp;an&nbsp;impact&nbsp;on&nbsp;how&nbsp;stuff&nbsp;like&nbsp;queryparam&nbsp;works.&nbsp;&nbsp;</td></tr>
+<tr><td>Different&nbsp;drive&nbsp;-&nbsp;even&nbsp;using&nbsp;the&nbsp;exact&nbsp;same&nbsp;sql&nbsp;-&nbsp;can&nbsp;mean&nbsp;different&nbsp;behaviour.&nbsp;Therefore,&nbsp;I&nbsp;only&nbsp;test&nbsp;with&nbsp;<br>the&nbsp;native&nbsp;drive&nbsp;for&nbsp;sql&nbsp;server.&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>By&nbsp;the&nbsp;way&nbsp;-&nbsp;you&nbsp;called&nbsp;me&nbsp;unprofessional.&nbsp;You&nbsp;can&nbsp;bad&nbsp;mouth&nbsp;my&nbsp;code,&nbsp;I&nbsp;don't&nbsp;mind.&nbsp;But&nbsp;I&nbsp;did&nbsp;not&nbsp;<br>ONCE&nbsp;attack&nbsp;you.&nbsp;I&nbsp;pointed&nbsp;out&nbsp;statements&nbsp;that&nbsp;I&nbsp;disagreed&nbsp;with&nbsp;-&nbsp;but&nbsp;I&nbsp;did&nbsp;not&nbsp;attack&nbsp;you.&nbsp;I&nbsp;would<br>&nbsp;like&nbsp;it&nbsp;if&nbsp;you&nbsp;would&nbsp;at&nbsp;least&nbsp;take&nbsp;that&nbsp;statement&nbsp;back.&nbsp;I&nbsp;don't&nbsp;care&nbsp;if&nbsp;you&nbsp;think&nbsp;my&nbsp;code&nbsp;is&nbsp;<br>bad&nbsp;-&nbsp;that&nbsp;is&nbsp;fine&nbsp;-&nbsp;but&nbsp;I&nbsp;have&nbsp;been&nbsp;very&nbsp;respectful&nbsp;to&nbsp;you.&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>raychorn@hotmail.com&nbsp;wrote:&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;Okay&nbsp;Mr.&nbsp;Jedi&nbsp;-&nbsp;Answer&nbsp;me&nbsp;this,&nbsp;IF&nbsp;you&nbsp;can.&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;Why&nbsp;oh&nbsp;why&nbsp;does&nbsp;your&nbsp;BlogCFC&nbsp;fail&nbsp;whenever&nbsp;I&nbsp;try&nbsp;to&nbsp;run&nbsp;it&nbsp;against&nbsp;an&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;ODBC&nbsp;DataSource&nbsp;rather&nbsp;than&nbsp;a&nbsp;Native&nbsp;SQL&nbsp;Server&nbsp;DataSource&nbsp;?&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;I&nbsp;will&nbsp;publish&nbsp;your&nbsp;response&nbsp;or&nbsp;lack&nbsp;thereof&nbsp;in&nbsp;my&nbsp;own&nbsp;Blog…&nbsp;Thx.&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;*struct*&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;DataSource&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;BLOGCFC&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;Detail&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;[Macromedia][SequeLink&nbsp;JDBC&nbsp;Driver][ODBC&nbsp;Socket][Microsoft][ODBC&nbsp;SQL&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;Server&nbsp;Driver]Optional&nbsp;feature&nbsp;not&nbsp;implemented&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;ErrorCode&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;HYC00&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;Message&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;Error&nbsp;Executing&nbsp;Database&nbsp;Query.&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;NativeErrorCode&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;0&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;*/&nbsp;/*&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;Type&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;java.sql.SQLException&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;SQLState&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;HYC00&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;Sql&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;select&nbsp;top&nbsp;5&nbsp;tblblogentries.id,&nbsp;tblblogentries.title,&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;tblblogentries.alias,&nbsp;dateAdd(hh,&nbsp;-1,&nbsp;tblblogentries.posted)&nbsp;as&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;posted,&nbsp;tblblogentries.username,&nbsp;tblblogentries.allowcomments,&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;tblblogentries.enclosure,&nbsp;tblblogentries.filesize,&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;tblblogentries.mimetype&nbsp;,&nbsp;tblblogentries.body,&nbsp;tblblogentries.morebody&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;from&nbsp;tblblogentries&nbsp;where&nbsp;1=1&nbsp;and&nbsp;blog&nbsp;=&nbsp;(param&nbsp;1)&nbsp;and&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;tblblogentries.posted&nbsp;&gt;=&nbsp;(param&nbsp;2)&nbsp;and&nbsp;posted&nbsp;&lt;&nbsp;(param&nbsp;3)&nbsp;order&nbsp;by&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;tblblogentries.posted&nbsp;desc&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;StackTrace&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.tagext.sql.QueryTag$DatabaseQueryException:&nbsp;Error&nbsp;Executing&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;Database&nbsp;Query.&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.tagext.sql.QueryTag.doEndTag(QueryTag.java:579)&nbsp;at&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;cfblog2ecfc2035162825$funcGETENTRIES.runFunction(C:\Inetpub\wwwroot\Bl&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;ogCFC&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;4.0.2\org\camden\blog\blog.cfc:1058)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.runtime.UDFMethod.invoke(UDFMethod.java:348)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.filter.SilentFilter.invoke(SilentFilter.java:47)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.runtime.UDFMethod$ReturnTypeFilter.invoke(UDFMethod.java:29&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;4)&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.runtime.UDFMethod$ArgumentCollectionFilter.invoke(UDFMethod&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;.java:258)&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.filter.FunctionAccessFilter.invoke(FunctionAccessFilter.jav&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;a:56)&nbsp;at&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.runtime.UDFMethod.runFilterChain(UDFMethod.java:211)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.runtime.UDFMethod.invoke(UDFMethod.java:173)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.runtime.TemplateProxy.invoke(TemplateProxy.java:192)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.runtime.TemplateProxy.invoke(TemplateProxy.java:145)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.runtime.CfJspPage._invoke(CfJspPage.java:1634)&nbsp;at&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;cfrecent2ecfm1505767005.runPage(C:\Inetpub\wwwroot\BlogCFC&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;4.0.2\includes\pods\recent.cfm:20)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.runtime.CfJspPage.invoke(CfJspPage.java:152)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.tagext.lang.IncludeTag.doStartTag(IncludeTag.java:349)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.runtime.CfJspPage._emptyTag(CfJspPage.java:1915)&nbsp;at&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;cflayout2ecfm1641532708.runPage(C:\Inetpub\wwwroot\BlogCFC&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;4.0.2\tags\layout.cfm:204)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.runtime.CfJspPage.invoke(CfJspPage.java:152)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.filter.CFVariablesScopeFilter.invoke(CFVariablesScopeFilter&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;.java:63)&nbsp;at&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.tagext.lang.ModuleTag.doAfterBody(ModuleTag.java:333)&nbsp;at&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;cfindex2ecfm173372318._factor8(C:\Inetpub\wwwroot\BlogCFC&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;4.0.2\index.cfm:391)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;cfindex2ecfm173372318._factor9(C:\Inetpub\wwwroot\BlogCFC&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;4.0.2\index.cfm:84)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;cfindex2ecfm173372318.runPage(C:\Inetpub\wwwroot\BlogCFC&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;4.0.2\index.cfm:1)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.runtime.CfJspPage.invoke(CfJspPage.java:152)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.tagext.lang.IncludeTag.doStartTag(IncludeTag.java:349)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.filter.CfincludeFilter.invoke(CfincludeFilter.java:65)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.filter.ApplicationFilter.invoke(ApplicationFilter.java:203)&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.filter.RequestMonitorFilter.invoke(RequestMonitorFilter.jav&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;a:51)&nbsp;at&nbsp;coldfusion.filter.PathFilter.invoke(PathFilter.java:86)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.filter.ExceptionFilter.invoke(ExceptionFilter.java:69)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.filter.BrowserDebugFilter.invoke(BrowserDebugFilter.java:52&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;)&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.filter.ClientScopePersistenceFilter.invoke(ClientScopePersi&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;stenceFilter.java:28)&nbsp;at&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.filter.BrowserFilter.invoke(BrowserFilter.java:38)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.filter.GlobalsFilter.invoke(GlobalsFilter.java:38)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.filter.DatasourceFilter.invoke(DatasourceFilter.java:22)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.filter.RequestThrottleFilter.invoke(RequestThrottleFilter.j&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;ava:115)&nbsp;at&nbsp;coldfusion.CfmServlet.service(CfmServlet.java:107)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;coldfusion.bootstrap.BootstrapServlet.service(BootstrapServlet.java:78&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;)&nbsp;at&nbsp;jrun.servlet.ServletInvoker.invoke(ServletInvoker.java:91)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;jrun.servlet.JRunInvokerChain.invokeNext(JRunInvokerChain.java:42)&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;jrun.servlet.JRunRequestDispatcher.invoke(JRunRequestDispatcher.java:2&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;57)&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;jrun.servlet.ServletEngineService.dispatch(ServletEngineService.java:5&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;41)&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;jrun.servlet.jrpp.JRunProxyService.invokeRunnable(JRunProxyService.jav&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;a:204)&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;jrunx.scheduler.ThreadPool$DownstreamMetrics.invokeRunnable(ThreadPool&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;.java:318)&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;jrunx.scheduler.ThreadPool$ThreadThrottle.invokeRunnable(ThreadPool.ja&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;va:426)&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;at&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;jrunx.scheduler.ThreadPool$UpstreamMetrics.invokeRunnable(ThreadPool.j&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;ava:264)&nbsp;at&nbsp;jrunx.scheduler.WorkerThread.run(WorkerThread.java:66)&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;/"If&nbsp;it&nbsp;ain't&nbsp;broke,&nbsp;don't&nbsp;fix&nbsp;it"&nbsp;is&nbsp;the&nbsp;slogan&nbsp;of&nbsp;the&nbsp;complacent,&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;the&nbsp;arrogant&nbsp;or&nbsp;the&nbsp;scared.&nbsp;It's&nbsp;an&nbsp;excuse&nbsp;for&nbsp;inaction.&nbsp;It's&nbsp;a&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;mindset&nbsp;that&nbsp;assumes&nbsp;(or&nbsp;hopes)&nbsp;that&nbsp;today's&nbsp;realities&nbsp;will&nbsp;continue&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;tomorrow&nbsp;in&nbsp;a&nbsp;tidy,&nbsp;linear&nbsp;and&nbsp;predictable&nbsp;fashion.&nbsp;Pure&nbsp;fantasy.&nbsp;In&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;this&nbsp;sort&nbsp;of&nbsp;culture,&nbsp;you&nbsp;won't&nbsp;find&nbsp;people&nbsp;who&nbsp;proactively&nbsp;take&nbsp;steps&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;to&nbsp;solve&nbsp;problems&nbsp;as&nbsp;they&nbsp;emerge.",&nbsp;Colin&nbsp;Powell/**&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;*&nbsp;*&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;*Ray&nbsp;C.&nbsp;Horn,&nbsp;*Senior&nbsp;Certified&nbsp;Macromedia&nbsp;ColdFusion&nbsp;MX&nbsp;7&nbsp;Solutions&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;Provider**&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;(*Certified&nbsp;Macromedia&nbsp;Associate&nbsp;Partner:&nbsp;Solutions&nbsp;Provider&nbsp;for&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;ColdFusion&nbsp;MX&nbsp;7&nbsp;&lt;http://partners.macromedia.com/&gt;*)&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;_(Certified&nbsp;Macromedia&nbsp;ColdFusion&nbsp;MX&nbsp;Developer)&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&lt;http://rayhorn.contentopia.net/rayhorn/www_vue_com/authenticate.cfm?r&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;egNum=211432924&valNum=989042163&gt;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;_&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;_(Certified&nbsp;Macromedia&nbsp;ColdFusion&nbsp;MX&nbsp;7&nbsp;Developer)&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&lt;http://rayhorn.contentopia.net/rayhorn/www_vue_com/authenticate.cfm?r&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;egNum=211856001&valNum=362115791&gt;_&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;_(Certified&nbsp;Brainbench&nbsp;JavaScript&nbsp;1.5&nbsp;Fundamentals&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&lt;http://www.brainbench.com/transcript.jsp?pid=4567160&gt;)_&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;_(Certified&nbsp;Brainbench&nbsp;SQL&nbsp;Server&nbsp;2000&nbsp;DBA&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&lt;http://www.brainbench.com/transcript.jsp?pid=4567160&gt;)_&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;_(Certified&nbsp;Brainbench&nbsp;SQL&nbsp;Server&nbsp;2000&nbsp;Developer&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&lt;http://www.brainbench.com/transcript.jsp?pid=4567160&gt;)_&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;_(Certified&nbsp;Brainbench&nbsp;HTML&nbsp;4.0&nbsp;Developer&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&lt;http://www.brainbench.com/transcript.jsp?pid=4567160&gt;)_&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;_(Certified&nbsp;Brainbench&nbsp;Programming&nbsp;Concepts&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&lt;http://www.brainbench.com/transcript.jsp?pid=4567160&gt;)_&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;_(Certified&nbsp;Brainbench&nbsp;RDBMS&nbsp;Concepts&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&lt;http://www.brainbench.com/transcript.jsp?pid=4567160&gt;)_&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;_(Certified&nbsp;Brainbench&nbsp;Web&nbsp;Development&nbsp;Concepts&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&lt;http://www.brainbench.com/transcript.jsp?pid=4567160&gt;)_&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;*Mobile**:&nbsp;+1&nbsp;707&nbsp;373-7756*&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;*&nbsp;*&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;*&nbsp;*&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;*&nbsp;*&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;*&nbsp;*&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>--&nbsp;</td></tr>
+<tr><td>===========================================================================&nbsp;</td></tr>
+<tr><td>Raymond&nbsp;Camden,&nbsp;Director&nbsp;of&nbsp;Development&nbsp;for&nbsp;Mindseye,&nbsp;Inc&nbsp;(www.mindseye.com)&nbsp;Member&nbsp;of&nbsp;Team&nbsp;Macromedia&nbsp;(http://www.macromedia.com/go/tea<br>mmacromedia)&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>Email&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;jedimaster@mindseye.com&nbsp;</td></tr>
+<tr><td>Blog&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;ray.camdenfamily.com&nbsp;</td></tr>
+<tr><td>Yahoo&nbsp;IM&nbsp;:&nbsp;cfjedimaster&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>"My&nbsp;ally&nbsp;is&nbsp;the&nbsp;Force,&nbsp;and&nbsp;a&nbsp;powerful&nbsp;ally&nbsp;it&nbsp;is."&nbsp;-&nbsp;Yoda&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td></td></tr>
+</table>
+<p align="justify">So I read Jedi Camden's response and I was left wanting... I was left wanting a more insightful response other than, and I am paraphrasing here, &quot;eh, dunno.&quot;</p>
+<p align="justify">Okay, now I don't claim to be a &quot;Jedi&quot; or any other type of Star Wars character for that matter but it only took me a short 20 minutes to find the answer for this problem but then <strong>I only have two (that's spelled 2) Macromedia ColdFusion Certifications (ColdFusion MX and ColdFusion MX 7) </strong> as well as being a <strong>Certified Macromedia Solutions Provider for ColdFusion MX 7</strong> and all that combined don't even make me a <em>bantha</em> let alone a &quot;Jedi&quot;. </p>
+<p align="justify">The real reason ODBC DSN's don't like &lt;cfqueryparam&gt; is because ODBC drivers don't support &lt;cfqueryparam&gt; so CF simply chokes and barfs when ODBC meets &lt;cfqueryparam&gt;. Okay, that's cool - I'll just restrict all the code I write that uses &lt;cfqueryparam&gt; to native SQL Server DSN's. Groovy.</p>
+<p align="justify">Well this is why I do NOT use &lt;cfqueryparam&gt; when I am coding for clients who pay me money to craft CF apps for them. Simply put, I like to remain employed over the long haul and I know if I try to explain to those who sign my weekly timesheets that the CF apps they just paid me to code only work with native SQL Server drivers I'm gonna be shoved out the nearest airlock in nothing flat. So I ride the rapids and I do not use &lt;cfqueryparam&gt; I also don't allow URL scoped variables to be injected into the SQL code I craft. </p>
+<p align="justify">So I coded my own CF UDF's to perform the same function as &lt;cfqueryparam&gt; so my code will work with any DSN's my clients wish to use - as it should be.</p>
+<p align="justify">So now you can make-up your own mind on this issue. Some may try to tell you that you must use &lt;cfqueryparam&gt; in order to keep your database safe from SQL injection attacks however if you do use &lt;cfqueryparam&gt; then your code ain't gonna work for just any DSN's you may wish to use. If you are coding for yourself then do what you think is best but when I am coding for others I craft code I know will be trouble-free even long after I have departed to work on another contracting gig so I won't be hated in absentia because my code barfed one day due to the wrong type of DSN being used.</p>
+<p align="justify"><strong>Now Let's Recap Shall We ?!?   </strong></p>
+<p align="justify">&quot;Jedi&quot; Camden didn't have a clue as to why hid mighty BlogCFC would not work when it was run against an ODBC DSN and HE wrote the code. I think it is pretty sad when the guy who coded the silly thing can't even tell me &quot;why&quot; his silly thing ain't working. I mean, &quot;what&quot; was HE thinking when he wrote this code anyway OR was he thinking at all ?!? Hmmm ? I always know, as I am writing my code, exactly &quot;why&quot; my code might fail and under what circumstances it will be happy to run but then I am just a <em>MORON</em> with some Certifications now aren't I ?!? But at-least I can tell people exactly and precisely why in no uncertain terms as to &quot;why&quot; my code might fail. Maybe I am <em>stupid</em> this way because I have to be <em>stupid</em> this way. I mean, if my code fails to work then I get shoved out the nearlest airlock and that's not fun when I make my living as a professional contractor who specializes in coding high-quality CF apps under very tight schedules and insane deadlines sometimes. I don't write code that fails for some silly reason such as using the wrong DSN that ain't even got support for some feature or function I thought it would be <em>kewl</em> to use. </p>
+<p align="justify">If YOU are going to market yourself as &quot;Jedi&quot; and ask for people to ask you questions then at-least take the time to do the research so you will be able to respond in an intelligent manner OR don't but do NOT try to make me or anyone else try to believe you are really a &quot;Jedi&quot; unless you CAN respond intelligently because Luke Skywalker weren't no dummy but then HE was a real &quot;Jedi&quot; or at-least as real as it gets in a movie.</p>
+<p align="justify">There is an old saying where I grew-up... &quot;Those who live in glass houses ought not throw stones...&quot; Folksy people sometimes have quaint sayings but I think it makes sense. He who falsely accused me of tring to &quot;steal&quot; something that was not being stolen cannot even live up to his &quot;Jedi&quot; title.</p>
+<p align="justify">Now I might not be the smartest guy in the room but not even I am <em>stupid</em> enough to try to market myself as being anything more than just a guy trying to earn a living because there will always be some smart-ass coming along wanting to put me to the test in an area where I am weakest and before you know it I'd be looking about as silly as &quot;Jedi&quot; Candem was looking earlier today. </p>
+<p align="justify">Up until now &quot;Jedi&quot; Camden has gotten-by by carefully picking and choosing the questions he has been responding to via his Blog in response to his &quot;Ask a Jedi&quot; thingy and this and only this has allowed him to gain the respect of others as I <em>had</em> respect for him until 2 days ago. I mean I respected &quot;Jedi&quot; Camden enough to use his Blogware above all others for my own personal Blog site. </p>
+<p align="justify">I respected &quot;Jedi&quot; Camden enough to make enhancements and modifications to <strong>his</strong> Blogware rather than try to code my own. I had enough respect for &quot;Jedi&quot; Camden to make sure <strong>his</strong> original code comments were in the code I redistributed in keeping with his missing License Agreement(s) that don't exist. I mean I could have easily removed every single original comment from BlogCFC and then it would have been far easier for me to &quot;<em>steal</em>&quot; his code but that's not what I did - because I was not <em>trying</em> to <em>steal</em> a damned thing. I gave credit where credit was due. </p>
+<p align="justify">However since I am a professional software engineer and I do tend to make my living writing code I did ask for donations for the code I wrote because I had to spend a lot of hours - many, many hours - fixing bugs and adding code to the original BlogCFC and in my book that means I had every damned right to do whatever I wanted with MY code. One may argue that I had no right to redistribute any part of the orginal BlogCFC due to some licensing restrictions but then I would want to &quot;see&quot; where those licensing restrictions were spelled-out but they were not spelled-out now were they. </p>
+<p align="justify">In my book if you want to complain about how people are going to use your open source code then damnit spell the frackin' terms of use out for all to see and abide-by. You cannot expect someone who is as moronic as I am to be able to overcome being a moron <em><strong>AND</strong></em> read minds at the same time. I mean, assuming I am the <em>retard</em> some want me to be then how can I be expected to actually rise above being a moron <em>AND</em> read minds too. I think we need to have more reasonable expectations for the mentally handicapped than to actually expect those of us who are mentally handicapped to be <em>expected</em> to read minds. I admit I am sometimes pretty silly stupid when it comes to things people don't bother to tell me or otherwise keep from me. When I am faced with not knowing some details that were never spelled-out I tend to become quite stupid and I do what I think is best under the circumstances. Obviously where &quot;Jedi&quot; Camden's open source code was concerend I was pretty <em>damned</em> stupid. I can only conclude that &quot;Jedi&quot; Camden does not earn his money as a professional programmer otherwise he might have known more about how intellectual property rights work in the real world.</p>
+<p align="justify">In the real-world, perhaps outside the confines of the CF community, when one does not exorcise control over one's intellectual property then one cannot hope to be able to have any control over his/her supposed intellectual property. Open Source code being distributed devoid of any terms of use or other licensing agreements is nothing more than <em>shareware</em> or <em>freeware</em> because the Law probably won't see it as anything else. When terms of use are not spelled-out then they simply do not exist. You might try to impose some kind of <em>tribal</em> common use to CF community open sourceware but the legal system we have to live in outside the CF community ain't gonna support ya much. </p>
+<p align="justify"><strong>Now Let's talk about <a href="http://www.google.com/search?hl=en&lr=&rls=HPID,HPID:2005-17,HPID:en&oi=defmore&defl=en&q=define:extortion" target="_blank">extortion</a></strong> </p>
+<p align="justify"><a href="http://www.google.com/search?hl=en&lr=&rls=HPID,HPID:2005-17,HPID:en&oi=defmore&defl=en&q=define:extortion" target="_blank">Google the word extortion</a> and then try to tell me that's not what &quot;Jedi&quot; Camden wasn't trying to achieve. </p>
+<p align="justify">The only person who stood to benefit from the removal of Rabid_BlogCFC was &quot;Jedi&quot; Camden regardless of whether or not he dirtied his own fingers in the process. Nobody else who did participate in bashing the Rabid-One stood to benefit in the least little bit and therefore they were acting as agents of &quot;Jedi&quot; Camden even though he may not have asked them to do so - he also did not ask them not to do so and he basked in the glow of having won that battle.</p>
+<p align="justify">Extortion is a felony in most states and it is a federal crime when it is done across state lines. You all might bear this in mind as you try to impose your views within the CF community. Felonies carry some hard time in the big house.</p>
+<p align="justify">Now I am not a District Attorney and I cannot charge anyone with any crimes - only a DA can do that in concert with a Grand Jury. All I can do is get in contact with a DA and request that charges be pressed - it is then up to the specific DA to do as he feels best under the circumstances. I was obviously harmed in this matter and I have asked &quot;Jedi&quot; Camden to reconcile with me so things don't have to get carried away too far but he has apparenlty chosen to ignore me and that's all fine and well. Meanwhile I am tring to assess where I stand in all of this as to whether or not this was all serious enough to warrant speaking with the authorities about this. So far I am leaning on remaining the live-and-let-live kind of guy because that's who I am. I am sure if this sort of thing happens again I will have even less of a sense of humor about it and I may feel forced and compelled to seek out the autorities to make them aware of things and then let them so what they feel is best. Even I, being the <em>stupid moron retard</em> I <u>probably</u> am, may have legal rights - <u>imagine</u> that. Now who in their right mind would want to grant someone like me any kind of legal rights ?!? Dare to dream, shall we !?! </p>
+<p align="justify"><strong>Once upon a time...</strong></p>
+<p align="justify">I tried to craft an Open Source License that would allow me to legally lay claim to the work others did on my wanna-be Open Source project and I tried to do this at SourceForge but my supposed License Agreement was rejected and rightfully so. I was told that my desired to lay claim to the code others produced for my Open Source project was not in keeping with the spirit of Open Source. </p>
+<p align="justify"><strong>Was SourceForge wrong or were they right ? YOU decide. </strong></p>

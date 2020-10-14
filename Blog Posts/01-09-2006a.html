@@ -1,0 +1,64 @@
+<link href="style.css" rel="stylesheet" type="text/css" />
+<strong>Geonosis&trade;</strong> Version 1.0 - <a href="http://rayhorn.contentopia.net/blog/downloads/Geonosis_v1.zip" target="_blank">You can download Geonosis&trade; here</a>.
+<br><br>
+<p align="justify"><strong>The Rabid CF Developer has done it again ! Pods without Borders for BlogCFC 4.0.2</strong> </p>
+<p align="justify">BlogCFC 4.0.2 is a reasonable Blog Server but it lacks some pazazz in the look-n-feel department.</p>
+<p align="justify">Today I give you Pods without Borders - no this is not a humanitarian effort to streat Pods across the globe but it is a way to allow Pod Layouts to be rendered without the Borders to allow for some variety in the look-n-feel of your friendly neighborhood Blog Pods..</p>
+<p align="justify">Notice the attributes.containerClass - this effectively makes the containerClass attribute for this custom tag into a variable parameter that can be used or not used which means the Pod can have a border from the CSS class one uses for the podLayout so that if the containerClass is made blank by passing in an empty string the pod will not have a border or you can just as easily make a new CSS class that sans the border while maintaining the rest of the CSS parameters such as font-size or the like. </p>
+<table width="600" border="1" cellpadding="-1" cellspacing="-1" class="code">
+  	<tr>
+		<td align="center" bgcolor="silver"><strong>podlayout.cfm</strong></td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+<table width="100%" border="0" cellpadding="-1" cellspacing="-1" class="code" style="font-size: 11px;">
+  <tr><td>&lt;cfsetting&nbsp;enablecfoutputonly=true&gt;&nbsp;</td></tr>
+<tr><td>&lt;cfprocessingdirective&nbsp;pageencoding="utf-8"&gt;&nbsp;</td></tr>
+<tr><td>&lt;!---&nbsp;</td></tr>
+<tr><td>&nbsp;Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;podlayout.cfm&nbsp;</td></tr>
+<tr><td>&nbsp;Author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;Raymond&nbsp;Camden&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;Created&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;October&nbsp;29,&nbsp;2003&nbsp;</td></tr>
+<tr><td>&nbsp;Last&nbsp;Updated&nbsp;:&nbsp;July&nbsp;22,&nbsp;2005&nbsp;</td></tr>
+<tr><td>&nbsp;History&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;PaulH&nbsp;added&nbsp;cfproc&nbsp;(rkc&nbsp;7/22/05)&nbsp;</td></tr>
+<tr><td>&nbsp;Purpose&nbsp;&nbsp;&nbsp;:&nbsp;Pod&nbsp;Layout&nbsp;</td></tr>
+<tr><td>---&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&lt;cfparam&nbsp;name="attributes.title"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&lt;cfif&nbsp;thisTag.executionMode&nbsp;is&nbsp;"start"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;cfparam&nbsp;name="attributes.containerClass"&nbsp;type="string"&nbsp;default="rightMenu"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;cfoutput&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;p&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;cfif&nbsp;(Len(attributes.containerClass)&nbsp;gt&nbsp;0)&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;div&nbsp;class="#attributes.containerClass#"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;cfelse&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;div&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/cfif&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;cfif&nbsp;(Len(attributes.title)&nbsp;gt&nbsp;0)&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;div&nbsp;class="menuTitle"&gt;#attributes.title#&lt;/div&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/cfif&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;div&nbsp;class="menuBody"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/cfoutput&gt;&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&lt;cfelse&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;cfoutput&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/div&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/div&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/p&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/cfoutput&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&lt;/cfif&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&lt;cfsetting&nbsp;enablecfoutputonly=false&gt;</td></tr>
+</table>	  </td>
+    </tr>
+</table>
+<p>I have updated the <a href="http://rayhorn.contentopia.net/blog/downloads/BlogCFC%204.0.2%20(Rabid%20CF%20Developer).zip" target="_blank">BlogCFC in the Downloads Pod</a> to include this latest update for all to download and use. Keep in mind, if you want or need any of the source for those files that I have encrypted simply drop me a donation so I can keep the lights turned-on the my hard-drives humming. </p>
+<p align="justify"><strong>And now for a shameless plug</strong> </p>
+<p align="justify"><strong>Geonosis&trade;</strong>, an up and coming future product, uses all the tricks and techniques I have learned over the past 10+ yrs of my personal ColdFusion development experience as well as my past 30 years of software development expertise. </p>
+<p align="justify"><strong>Geonosis&trade;</strong> will use the <strong>The Rabid CF Developer's AJAX Framework</strong> just as soon as I have completed my work on the next generation version of this exciting AJAX Framework .</p>
+<p align="justify">Stay tuned for more exciting <strong>Geonosis&trade;</strong> blog posts as development continues to march right along. </p>
+<p align="justify">&nbsp;</p>

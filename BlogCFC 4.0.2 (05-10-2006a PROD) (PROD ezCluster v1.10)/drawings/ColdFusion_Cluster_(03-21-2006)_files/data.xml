@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisioDocument>
+	<DocumentProperties>
+		<Title></Title>
+		<HyperlinkBase href=""></HyperlinkBase>
+	</DocumentProperties>
+	<Pages>
+		<Page ID="0" Name="Page-1" NameU="Page-1">
+			<Layer IX="0">
+				<Name>Connector</Name>
+				<NameUniv>Connector</NameUniv>
+				<Visible>1</Visible>
+			</Layer>
+			<Shapes>
+				<Shape ID="1" UniqueID="{5D20533C-11A2-469D-9F8C-F8AB9FD2FDE7}" Name="Box" NameU="Box" Master="0">
+					<Text>Server #1
+ColdFusion MX 7 Enterprise
+2.8 GHz Pentium D w/4 GB RAM
+Windows 2003 Std R2 (32 bit)</Text>
+					<XForm>
+						<PinX Unit="IN">2.000000000000000</PinX>
+						<PinY Unit="IN">6.266666666666667</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="2" UniqueID="{95739DB8-40F1-4EDE-B2D5-F82AB742903C}" Name="Box.2" NameU="Box.2" Master="0">
+					<Text>Server #2
+ColdFusion MX 7 Enterprise
+2.2 GHz AMD 4200+ w/4 GB RAM
+Windows 2003 Std R2 (32 bit)</Text>
+					<XForm>
+						<PinX Unit="IN">6.400000000000000</PinX>
+						<PinY Unit="IN">6.266666666666667</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="3" UniqueID="{875DD702-2E3D-4BF0-90EA-D0C2082A4D7F}" Name="Title block bold" NameU="Title block bold" Master="2">
+					<Text>Anatomy of a ColdFusion Cluster</Text>
+					<XForm>
+						<PinX Unit="IN">5.250000000000000</PinX>
+						<PinY Unit="IN">10.350000000000001</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="8" UniqueID="{8D3334A8-A4F6-47C4-9B72-7384DFB8D6B8}" Name="Diamond" NameU="Diamond" Master="5">
+					<Text>Traffic Reflector Site
+ColdFusion MX 7 Enterprise
+2 GHz AMD 2800+
+1.5 GB RAM</Text>
+					<XForm>
+						<PinX Unit="IN">4.200000000000000</PinX>
+						<PinY Unit="IN">8.300000000000003</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="9" UniqueID="{2C314ACA-F2B1-4059-8BED-D6A9FF83FDA2}" Name="Dynamic connector" NameU="Dynamic connector" Master="7">
+					<Text>Gigabit NIC</Text>
+					<XForm>
+						<PinX Unit="IN">5.900000000000000</PinX>
+						<PinY Unit="IN">7.800000000000003</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="10" UniqueID="{6C011376-50F2-43C8-94AD-F08216BA26F7}" Name="Dynamic connector.10" NameU="Dynamic connector.10" Master="7">
+					<Text>Gigabit NIC</Text>
+					<XForm>
+						<PinX Unit="IN">2.500000000000000</PinX>
+						<PinY Unit="IN">7.750000000000002</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="11" UniqueID="{0B4D4AAE-D29F-42A0-B231-E18EAA0BF482}" Name="Note box contemp." NameU="Note box contemp." Master="8">
+					<Text>Server #1 and Server #2 are mirror copies of each other and have the same content.
+
+The Traffic Reflector site is designed to do nothing more than handle abstract content hits on behalf of Server #1 and Server #2.  The Traffic Reflector
+Site has no real content other than enough ColdFusion code to allow hits to come from Server #1 and Server #2 for the sole purpose of allowing the
+Traffic Reflector to determine which server (Server #1 and Server #2) the hit should be reflected to.
+
+The Traffic Reflector site is responsible for determining if either Server #1 or Server #2 are online or offline.  If both are online then the Traffic Reflector
+Site determines which server has the least load at the moment.  The Traffic Reflector site then redirects the hit to the appropriate server and flags
+A Client variable with the Server Name (CGI.SERVER_NAME).  The next hit for the same client (user) would bypass the need to determine which
+Server should get the hit other than to double check the server to make sure that server is actually online; if the target server is offline or 
+non-responsive the Traffic Reflector site simply sends the hit to the other server in the cluster.
+
+It should be noted this model only works when the Session Scope is not used at all.  The only Scope that is common and can be used by more than
+One server is the Client Scope.  The Client Scope resides in a 64 bit SQL Server 2005 server running Windows 2003 Std 64-bit.
+
+Each of the three ColdFusion servers are connected to the Internet via a common DSL Connection (2 Mbps down and 512 Kbps up).
+
+All four servers are connected to each other via a dedicated Gigabit Network that is isolated from the Internet using a common set of NICs.
+
+All three ColdFusion servers have at least two NICs.  The Database Server has only one NIC and is not visible from the Internet.</Text>
+					<XForm>
+						<PinX Unit="IN">4.200000000000000</PinX>
+						<PinY Unit="IN">1.500000000000000</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="17" UniqueID="{3F8B169C-F75F-4C99-91BF-6EC1A711A092}" Name="Circle" NameU="Circle" Master="9">
+					<Text>SQL Server 2005 x64
+2.2 GHz AMD 4200+
+4 GB RAM
+Windows 2003 Std x64
+
+64-bit Server running nothing but 64-bit code</Text>
+					<XForm>
+						<PinX Unit="IN">4.199999999999999</PinX>
+						<PinY Unit="IN">4.299999999999999</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="18" UniqueID="{F4F6B54E-11B1-404D-8B51-176423C02BA8}" Name="Dynamic connector.18" NameU="Dynamic connector.18" Master="7">
+					<Text>Gigabit NIC</Text>
+					<XForm>
+						<PinX Unit="IN">2.550000000000000</PinX>
+						<PinY Unit="IN">4.816666666666666</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="19" UniqueID="{58707760-0150-4328-9B2B-FC6EE36BE3D6}" Name="Dynamic connector.19" NameU="Dynamic connector.19" Master="7">
+					<Text>Gigabit NIC</Text>
+					<XForm>
+						<PinX Unit="IN">5.850000000000000</PinX>
+						<PinY Unit="IN">4.816666666666666</PinY>
+					</XForm>
+					<LayerMem>
+						<LayerMember>0</LayerMember>
+					</LayerMem>
+				</Shape>
+				<Shape ID="20" UniqueID="{4FD7E340-41AD-4171-81D0-E1A0D8CBD988}" Name="Up / down arrow" NameU="Up / down arrow" Master="11">
+					<Text>DSL to Internet</Text>
+					<XForm>
+						<PinX Unit="IN">2.779487298107780</PinX>
+						<PinY Unit="IN">9.204006350946109</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="24" UniqueID="{CB663F82-E293-41A2-A57D-D28B22EC3AE9}" Name="Up / down arrow.24" NameU="Up / down arrow.24" Master="11">
+					<Text>DSL to Internet</Text>
+					<XForm>
+						<PinX Unit="IN">0.850000000000002</PinX>
+						<PinY Unit="IN">7.900000000000000</PinY>
+					</XForm>
+				</Shape>
+				<Shape ID="28" UniqueID="{E2383109-E600-4D62-8629-E7A6A3FCF995}" Name="Up / down arrow.28" NameU="Up / down arrow.28" Master="11">
+					<Text>DSL to Internet</Text>
+					<XForm>
+						<PinX Unit="IN">7.349999999999998</PinX>
+						<PinY Unit="IN">7.900000000000000</PinY>
+					</XForm>
+				</Shape>
+			</Shapes>
+		</Page>
+	</Pages>
+</VisioDocument>

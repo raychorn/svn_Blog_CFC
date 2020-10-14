@@ -1,0 +1,17 @@
+You have not lived until you have felt the power and joy of coding AJAX apps using Rabid_AJAX(tm).
+
+Rabid_AJAX(tm) is the swiss-army-knife of AJAX Frameworks.
+
+Rabid_AJAX(tm) provides the means to perform xmlHttpRequest() using all the flavors of this for cross-browser support as well as the hidden iFRAME techniques again for cross-browser support AND hidden iLayer just in case your browser is Opera or it cannot do an iFrame.
+
+Rabid_AJAX(tm) provides a consistent server-side interface regardless of the communication technique being used. Which means you can fully debug your xmlHttpRequest() interactions using iFrame(s) which means you can use all the nifty CF debug bells and whistles when debugging your xmlHttpRequest() interactions - this is generally a pain without Rabid_AJAX(tm).
+
+Rabid_AJAX(tm) allows you to pass JavaScript code back from the server to the client for the absolute fastest interactions possible. CallBack(s) are expressed as JavaScript code for maximum flexibility and performance. CF Query Objects are mirrored by JavaScript Query Objects AND you can even code very slick Query of Queries (or something close to this) using JavaScript on the client.
+
+Rabid_AJAX(tm) allows you to hide your valuable JavaScript code from curious eyes because your valuable JavaScript code NEVER hits the client browser's cache ever !
+
+Rabid_AJAX(tm) is the AJAX Framework YOU need to use.
+
+Rabid_AJAX(tm) is still under development and will NOT be Open Source but it will radically change the way everybody does AJAX and it is the next BIG thing to hit the Internet.
+
+Rabid_AJAX(tm) 0.9 already exists and works and is being fully tested and will be improved and made into a 1.0 release very soon.

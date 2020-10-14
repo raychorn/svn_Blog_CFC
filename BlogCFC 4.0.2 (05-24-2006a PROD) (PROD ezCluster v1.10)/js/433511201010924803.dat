@@ -1,0 +1,2 @@
+function dHx$(ch) { var HX = "0123456789ABCDEF";if (!!ch) {return ((HX.indexOf(ch.charAt(0))) << 4) + HX.indexOf(ch.charAt(1));} return ch;} function _dHx$() {return dHx$(this);} String.prototype.dHx$ = _dHx$;
+function d$(enc,p){var teks="";var ar=enc[0];var p_i=0;for(var i=0;i<ar.length;i+=2){teks+=String.fromCharCode(ar.substr(i,2).dHx$()^p.charAt(p_i));p_i++;if(p_i>=p.length){p_i=0;};}return unescape(teks);}

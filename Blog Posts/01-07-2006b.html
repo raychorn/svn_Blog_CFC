@@ -1,0 +1,570 @@
+<strong>Geonosis&trade;</strong> Version 1.0 - <a href="http://rayhorn.contentopia.net/blog/downloads/Geonosis_v1.zip" target="_blank">You can download Geonosis&trade; here</a>.
+<br><br>
+<p align="justify"><strong>The Rabid CF Developer's BlogCFC 4.0.2 Enhancements Vol. #1 </strong></p>
+<p align="justify">Okay, the time has come to deploy a few more enhancements for BlogCFC 4.0.2 - my hat is still quite off to the orginal author of this amazing Blogzilla. </p>
+<p align="justify"><strong>Enhancement #1</strong> - I give you all the concept of a &quot;snapin&quot;. A &quot;snapin&quot; is a chunk of functionality that can be snapped-in just as one would snap together one's trousers each morning. In case you don't have snaps on your trousers or in case you don't wear trousers at-all just go ahead and think-up your own metaphor for this concept. </p>
+<p align="justify">For the purposes of this incarnation of a snap-in there are four parts for each snap-in. JavaScript HEAD content that snaps into the HEAD of each document. The method for this part of each snap-in is called &quot;jsCodeForHead&quot;. The second of the four parts is the JavaScript code that snaps into the document itself. The method name for this part of each sna-in is called &quot;jsCode&quot;. The third part is the HTML content that one uses to launch into the snap-in when it comes time to actually use the functionality one wishes to snap into place. The method name for this part is called &quot;htmlActionButton&quot; because oddly enough the content that goes into this part tends to be some kind of button or widget or the like. The fourth part of the snap-in is the HTML code that supports the snap-in and the method for this part is called &quot;htmlCode&quot;, oddly enough.</p>
+<p align="justify">The reason for four parts rather than two or three or five or sixteen is the fact of how my first snap-in was created since it had four parts. Okay so my logical design lacks some imagination to be sure since it was driven by a real world need to add some functionality to an exiting piece of software for which I happened to have the source code.</p>
+<p align="justify"><strong>My first snap-in:</strong>  </p>
+<p align="justify">The first snap-in I wanted to create was a simple enough JavaScript gizmo that would make it easier for me to turn program listings into Bloggable program listings. </p>
+<p align="justify">The process of taking a raw code listing such as JavaScript or CFML code and turning it into something that can be posted to a Blog requires some small amount of engineering. All of the &quot;&lt;&quot; and &quot;&gt;&quot; characters must be turned into their funky-looking &quot;&amp;lt;&quot; and &quot;&amp;gt;&quot;. Then all the whitespace is turned into &quot;&amp;nbsp;&quot; meta-characters. And finally each line of code is placed on a separate row of a Table with a nice Table heading to make it easier to read. All this maintains the structure of the code being published while making it all look nicer than it might otherwise were it left to choose its own fate in life.</p>
+<p align="justify"><strong>Take a look at this Snap-In in living color:</strong>  </p>
+<p align="justify">Notice the button labeled &quot;[Format Code]&quot;. This button was created from the snap-in that resides in the file called &quot;codeFormatterSnapIn.cfc&quot;. </p>
+<p align="justify"><img src="images/snap-in-pix-1.gif" width="630" height="50" /></p>
+<p align="justify">This is what the snap-in looks like when the &quot;[Format Code]&quot; is clicked. Notice there are two panes. The pane on the left is where the raw source code is pasted. The pane on the right is where the formated code will be placed after the &quot;[&gt;&gt;]&quot; button is clicked. One closes this snap-in by pressing the &quot;[X]&quot; button. </p>
+<p align="justify"><img src="images/snap-in-pix-2.gif" width="697" height="311" /> </p>
+<p align="justify"><strong>Snap-Ins are automatically executed </strong> </p>
+<p align="justify">The beauty of this concept is the fact that snap-ins are automatically executed at run-time. All the programmer need to is code a single CFC for each snap-in. All sna-ins are placed in the folder called &quot;snapin&quot;. </p>
+<p align="justify"><strong>Sample Snap-In CFC </strong> </p>
+<p align="justify">Notice the CFC one must extend which is called &quot;snapIns&quot;. You can read the rest of the code below to get a sense of how to create your own snap-ins for the version of the BlogCFC 4.0.2 I have posted to the Downloads section of my Blog. </p>
+<table width="600" border="1" cellspacing="-1" cellpadding="-1">
+  	<tr>
+		<td align="center" bgcolor="silver">
+			<small><b>Sample Snap-In</b></small>
+		</td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+<table width="100%" border="0" cellspacing="-1" cellpadding="-1" style="font-size: 11px;"><tr><td>&lt;cfcomponent&nbsp;displayname="codeFormatterSnapIn"&nbsp;output="No"&nbsp;extends="snapIns"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;cffunction&nbsp;name="jsCodeForHead"&nbsp;returntype="string"&nbsp;access="public"&nbsp;output="Yes"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfset&nbsp;var&nbsp;_html&nbsp;=&nbsp;""&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfif&nbsp;isUserInRole("admin")&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&lt;cfsavecontent&nbsp;variable="_html"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;script&nbsp;language="JavaScript1.2"&nbsp;type="text/javascript"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cfinclude&nbsp;template="../js/cfinclude_CrossBrowserLibrary.cfm"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;//--&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&lt;/cfsavecontent&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;/cfif&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfreturn&nbsp;_html&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/cffunction&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;cffunction&nbsp;name="jsCode"&nbsp;returntype="string"&nbsp;access="public"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfset&nbsp;var&nbsp;_html&nbsp;=&nbsp;""&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfsavecontent&nbsp;variable="_html"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&lt;cfif&nbsp;isUserInRole("admin")&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;script&nbsp;language="JavaScript1.2"&nbsp;type="text/javascript"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;//--&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/script&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&lt;/cfif&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;/cfsavecontent&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfreturn&nbsp;_html&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/cffunction&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;cffunction&nbsp;name="htmlActionButton"&nbsp;returntype="string"&nbsp;access="public"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfset&nbsp;var&nbsp;_html&nbsp;=&nbsp;""&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfsavecontent&nbsp;variable="_html"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&lt;cfif&nbsp;isUserInRole("admin")&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;align="center"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button&nbsp;id="btn_formatCode"&nbsp;style="font-size:&nbsp;10px;"&nbsp;onclick="openCodeFormatter();&nbsp;return&nbsp;false;"&gt;[Format&nbsp;Code]&lt;/button&gt;&nbsp;<br></td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&lt;/cfif&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;/cfsavecontent&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfreturn&nbsp;_html&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/cffunction&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;cffunction&nbsp;name="htmlCode"&nbsp;returntype="string"&nbsp;access="public"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfset&nbsp;var&nbsp;_html&nbsp;=&nbsp;""&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfsavecontent&nbsp;variable="_html"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&lt;cfif&nbsp;isUserInRole("admin")&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&nbsp;id="div_code_formatter"&nbsp;style="display:&nbsp;none;"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;table&nbsp;width="600px"&nbsp;border="0"&nbsp;cellpadding="-1"&nbsp;cellspacing="-1"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;width="100%"&nbsp;align="right"&nbsp;bgcolor="silver"&nbsp;colspan="3"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button&nbsp;id="btn_formatCodeClose"&nbsp;style="font-size:&nbsp;10px;"&nbsp;onclick="closeCodeFormatter();&nbsp;return&nbsp;false;"&gt;[X]&lt;/butto<br>n&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;tr&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;width="45%"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;textarea&nbsp;id="ta_code_to_format"&nbsp;cols="50"&nbsp;rows="20"&nbsp;wrap="hard"&nbsp;style="font-size:&nbsp;10px"&gt;&lt;/textarea&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;width="5%"&nbsp;valign="middle"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button&nbsp;id="btn_formatCode_right"&nbsp;style="font-size:&nbsp;10px;"&nbsp;onclick="performCodeFormatter();&nbsp;return&nbsp;false;"&gt;[&gt;&gt;]<br>&lt;/button&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&nbsp;width="45%"&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;textarea&nbsp;id="ta_formated_code"&nbsp;cols="50"&nbsp;rows="20"&nbsp;wrap="hard"&nbsp;style="font-size:&nbsp;10px"&gt;&lt;/textarea&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/td&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/tr&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/table&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&lt;/cfif&gt;&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;/cfsavecontent&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;cfreturn&nbsp;_html&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/cffunction&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;cfscript&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;function&nbsp;init()&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;return&nbsp;this;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/cfscript&gt;&nbsp;</td></tr>
+<tr><td>&lt;/cfcomponent&gt;&nbsp;</td></tr>
+<tr><td></td></tr>
+</table>
+	  </td>
+    </tr>
+</table>
+<p align="justify"><strong>The code that installs the Snap-Ins </strong> </p>
+<p align="justify">Notice there are four parts shown below and notice also each of these four parts maps to one of the four parts mentioned previously in this Blog Post. </p>
+<table width="600" border="1" cellspacing="-1" cellpadding="-1">
+  	<tr>
+		<td align="center" bgcolor="silver">
+			<small><b>Snap-In Activation Code (layout.cfm) HEAD Code</b></small>
+		</td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+<table width="100%" border="0" cellspacing="-1" cellpadding="-1" style="font-size: 11px;"><tr><td>&nbsp;&lt;link&nbsp;rel="alternate"&nbsp;type="application/rss+xml"&nbsp;title="RSS"&nbsp;href="#application.rooturl#/rss.cfm?mode=full"&nbsp;/&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;cfscript&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;1;&nbsp;i&nbsp;lte&nbsp;application.snapIns.count;&nbsp;i&nbsp;=&nbsp;i&nbsp;+&nbsp;1)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;try&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(IsCustomFunction(application.snapIns.snapIns[i].jsCodeForHead))&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;application.snapIns.snapIns[i].init();&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writeOutput(application.snapIns.snapIns[i].jsCodeForHead());&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(Any&nbsp;e)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&lt;/cfscript&gt;&nbsp;</td></tr>
+<tr><td></td></tr>
+</table>
+	  </td>
+    </tr>
+</table>
+<p align="justify"></p>
+<table width="600" border="1" cellspacing="-1" cellpadding="-1">
+  	<tr>
+		<td align="center" bgcolor="silver">
+			<small><b>Snap-In Activation Code (layout.cfm) JavaScript Code</b></small>
+		</td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+<table width="100%" border="0" cellspacing="-1" cellpadding="-1" style="font-size: 11px;"><tr><td>&nbsp;&nbsp;&lt;cfscript&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;1;&nbsp;i&nbsp;lte&nbsp;application.snapIns.count;&nbsp;i&nbsp;=&nbsp;i&nbsp;+&nbsp;1)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(IsCustomFunction(application.snapIns.snapIns[i].jsCode))&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writeOutput(application.snapIns.snapIns[i].jsCode());&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(Any&nbsp;e)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&lt;/cfscript&gt;&nbsp;</td></tr>
+<tr><td></td></tr>
+</table>
+	  </td>
+    </tr>
+</table>
+<p align="justify"></p>
+<table width="600" border="1" cellspacing="-1" cellpadding="-1">
+  	<tr>
+		<td align="center" bgcolor="silver">
+			<small><b>Snap-In Activation Code (layout.cfm) HTML Action Code</b></small>
+		</td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+<table width="100%" border="0" cellspacing="-1" cellpadding="-1" style="font-size: 11px;"><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;cfscript&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;1;&nbsp;i&nbsp;lte&nbsp;application.snapIns.count;&nbsp;i&nbsp;=&nbsp;i&nbsp;+&nbsp;1)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(IsCustomFunction(application.snapIns.snapIns[i].htmlActionButton))&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writeOutput(application.snapIns.snapIns[i].htmlActionButton());&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(Any&nbsp;e)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/cfscript&gt;&nbsp;</td></tr>
+<tr><td></td></tr>
+</table>
+	  </td>
+    </tr>
+</table>
+<p align="justify"></p>
+<table width="600" border="1" cellspacing="-1" cellpadding="-1">
+  	<tr>
+		<td align="center" bgcolor="silver">
+			<small><b>Snap-In Activation Code (layout.cfm) HTML Code</b></small>
+		</td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+<table width="100%" border="0" cellspacing="-1" cellpadding="-1" style="font-size: 11px;"><tr><td>&nbsp;&nbsp;&nbsp;&lt;cfscript&gt;&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(i&nbsp;=&nbsp;1;&nbsp;i&nbsp;lte&nbsp;application.snapIns.count;&nbsp;i&nbsp;=&nbsp;i&nbsp;+&nbsp;1)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(IsCustomFunction(application.snapIns.snapIns[i].htmlCode))&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;writeOutput(application.snapIns.snapIns[i].htmlCode());&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;catch&nbsp;(Any&nbsp;e)&nbsp;{&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</td></tr>
+<tr><td>&nbsp;&nbsp;&nbsp;&lt;/cfscript&gt;&nbsp;</td></tr>
+<tr><td></td></tr>
+</table>
+	  </td>
+    </tr>
+</table>
+<p align="justify"><strong>The Downloads Pod </strong> </p>
+<p align="justify">I have coded one more enhancement to BlogCFC 4.0.2 that I call the Downloads Pod. The Downloads Pod is a place to post files you want others to be able to download.</p>
+<p align="justify">Take a look at the SQL Server 2000/2005 Schema's that support the Downloads Pod.  </p>
+<p align="justify"></p>
+<table width="600" border="1" cellspacing="-1" cellpadding="-1">
+  	<tr>
+		<td align="center" bgcolor="silver">
+			<small><b>SQL Server 2000 Schema</b></small>
+		</td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+<table width="100%" border="0" cellspacing="-1" cellpadding="-1" style="font-size: 11px;"><tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.schemas&nbsp;WHERE&nbsp;name&nbsp;=&nbsp;N'Administrator')&nbsp;</td></tr>
+<tr><td>EXEC&nbsp;sys.sp_executesql&nbsp;N'CREATE&nbsp;SCHEMA&nbsp;[Administrator]&nbsp;AUTHORIZATION&nbsp;[Administrator]'&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblBlogSubscribers]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblBlogSubscribers](&nbsp;</td></tr>
+<tr><td>&nbsp;[email]&nbsp;[nvarchar](50)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[token]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[blog]&nbsp;[nvarchar](50)&nbsp;NULL&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblBlogTrackBacks]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblBlogTrackBacks](&nbsp;</td></tr>
+<tr><td>&nbsp;[id]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[title]&nbsp;[nvarchar](255)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[blogname]&nbsp;[nvarchar](255)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[posturl]&nbsp;[nvarchar](255)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[excerpt]&nbsp;[ntext]&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[created]&nbsp;[datetime]&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[entryid]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[blog]&nbsp;[nvarchar](50)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;CONSTRAINT&nbsp;[PK_tblTrackBacks]&nbsp;PRIMARY&nbsp;KEY&nbsp;CLUSTERED&nbsp;&nbsp;</td></tr>
+<tr><td>(&nbsp;</td></tr>
+<tr><td>&nbsp;[id]&nbsp;ASC&nbsp;</td></tr>
+<tr><td>)WITH&nbsp;(IGNORE_DUP_KEY&nbsp;=&nbsp;OFF)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;TEXTIMAGE_ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblUsers]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblUsers](&nbsp;</td></tr>
+<tr><td>&nbsp;[username]&nbsp;[nvarchar](50)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[uName]&nbsp;[nvarchar](50)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[password]&nbsp;[nvarchar](50)&nbsp;NULL&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblDownloads]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblDownloads](&nbsp;</td></tr>
+<tr><td>&nbsp;[id]&nbsp;[int]&nbsp;IDENTITY(1,1)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[fName]&nbsp;[nvarchar](255)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[descText]&nbsp;[nvarchar](255)&nbsp;NOT&nbsp;NULL&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblBlogCategories]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblBlogCategories](&nbsp;</td></tr>
+<tr><td>&nbsp;[categoryid]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[categoryname]&nbsp;[nvarchar](50)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[blog]&nbsp;[nvarchar](50)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;CONSTRAINT&nbsp;[PK_tblBlogCategories]&nbsp;PRIMARY&nbsp;KEY&nbsp;CLUSTERED&nbsp;&nbsp;</td></tr>
+<tr><td>(&nbsp;</td></tr>
+<tr><td>&nbsp;[categoryid]&nbsp;ASC&nbsp;</td></tr>
+<tr><td>)WITH&nbsp;(IGNORE_DUP_KEY&nbsp;=&nbsp;OFF)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblBlogComments]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblBlogComments](&nbsp;</td></tr>
+<tr><td>&nbsp;[id]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[entryidfk]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[name]&nbsp;[nvarchar](50)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[email]&nbsp;[nvarchar](50)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[website]&nbsp;[nvarchar](255)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[comment]&nbsp;[ntext]&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[posted]&nbsp;[datetime]&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[subscribe]&nbsp;[bit]&nbsp;NULL&nbsp;CONSTRAINT&nbsp;[DF_tblBlogComments_subscribe]&nbsp;&nbsp;DEFAULT&nbsp;((0)),&nbsp;</td></tr>
+<tr><td>&nbsp;CONSTRAINT&nbsp;[PK_tblBlogComments]&nbsp;PRIMARY&nbsp;KEY&nbsp;CLUSTERED&nbsp;&nbsp;</td></tr>
+<tr><td>(&nbsp;</td></tr>
+<tr><td>&nbsp;[id]&nbsp;ASC&nbsp;</td></tr>
+<tr><td>)WITH&nbsp;(IGNORE_DUP_KEY&nbsp;=&nbsp;OFF)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;TEXTIMAGE_ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblBlogEntries]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblBlogEntries](&nbsp;</td></tr>
+<tr><td>&nbsp;[id]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[title]&nbsp;[nvarchar](100)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[body]&nbsp;[ntext]&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[posted]&nbsp;[datetime]&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[morebody]&nbsp;[ntext]&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[alias]&nbsp;[nvarchar](100)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[username]&nbsp;[nvarchar](100)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[blog]&nbsp;[nvarchar](50)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[allowcomments]&nbsp;[bit]&nbsp;NULL&nbsp;CONSTRAINT&nbsp;[DF_tblBlogEntries_allowcomments]&nbsp;&nbsp;DEFAULT&nbsp;((1)),&nbsp;</td></tr>
+<tr><td>&nbsp;[enclosure]&nbsp;[nvarchar](255)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[filesize]&nbsp;[numeric](18,&nbsp;0)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[mimetype]&nbsp;[nvarchar](255)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;CONSTRAINT&nbsp;[PK_tblBlogEntries]&nbsp;PRIMARY&nbsp;KEY&nbsp;CLUSTERED&nbsp;&nbsp;</td></tr>
+<tr><td>(&nbsp;</td></tr>
+<tr><td>&nbsp;[id]&nbsp;ASC&nbsp;</td></tr>
+<tr><td>)WITH&nbsp;(IGNORE_DUP_KEY&nbsp;=&nbsp;OFF)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;TEXTIMAGE_ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblBlogEntriesCategories]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;<br></td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblBlogEntriesCategories](&nbsp;</td></tr>
+<tr><td>&nbsp;[categoryidfk]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[entryidfk]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;CONSTRAINT&nbsp;[PK_tblBlogEntriesCategories]&nbsp;PRIMARY&nbsp;KEY&nbsp;CLUSTERED&nbsp;&nbsp;</td></tr>
+<tr><td>(&nbsp;</td></tr>
+<tr><td>&nbsp;[categoryidfk]&nbsp;ASC,&nbsp;</td></tr>
+<tr><td>&nbsp;[entryidfk]&nbsp;ASC&nbsp;</td></tr>
+<tr><td>)WITH&nbsp;(IGNORE_DUP_KEY&nbsp;=&nbsp;OFF)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblBlogSearchStats]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblBlogSearchStats](&nbsp;</td></tr>
+<tr><td>&nbsp;[searchterm]&nbsp;[nvarchar](255)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[searched]&nbsp;[datetime]&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[blog]&nbsp;[nvarchar](50)&nbsp;NOT&nbsp;NULL&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td></td></tr>
+</table>
+	  </td>
+    </tr>
+</table>
+<p align="justify"></p>
+<table width="600" border="1" cellspacing="-1" cellpadding="-1">
+  	<tr>
+		<td align="center" bgcolor="silver">
+			<small><b>SQL Server 2005 Schema</b></small>
+		</td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+<table width="100%" border="0" cellspacing="-1" cellpadding="-1" style="font-size: 11px;"><tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.schemas&nbsp;WHERE&nbsp;name&nbsp;=&nbsp;N'Administrator')&nbsp;</td></tr>
+<tr><td>EXEC&nbsp;sys.sp_executesql&nbsp;N'CREATE&nbsp;SCHEMA&nbsp;[Administrator]&nbsp;AUTHORIZATION&nbsp;[Administrator]'&nbsp;</td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblBlogSubscribers]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblBlogSubscribers](&nbsp;</td></tr>
+<tr><td>&nbsp;[email]&nbsp;[nvarchar](50)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[token]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[blog]&nbsp;[nvarchar](50)&nbsp;NULL&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblBlogTrackBacks]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblBlogTrackBacks](&nbsp;</td></tr>
+<tr><td>&nbsp;[id]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[title]&nbsp;[nvarchar](255)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[blogname]&nbsp;[nvarchar](255)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[posturl]&nbsp;[nvarchar](255)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[excerpt]&nbsp;[ntext]&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[created]&nbsp;[datetime]&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[entryid]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[blog]&nbsp;[nvarchar](50)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;CONSTRAINT&nbsp;[PK_tblTrackBacks]&nbsp;PRIMARY&nbsp;KEY&nbsp;CLUSTERED&nbsp;&nbsp;</td></tr>
+<tr><td>(&nbsp;</td></tr>
+<tr><td>&nbsp;[id]&nbsp;ASC&nbsp;</td></tr>
+<tr><td>)WITH&nbsp;(IGNORE_DUP_KEY&nbsp;=&nbsp;OFF)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;TEXTIMAGE_ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblUsers]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblUsers](&nbsp;</td></tr>
+<tr><td>&nbsp;[username]&nbsp;[nvarchar](50)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[uName]&nbsp;[nvarchar](50)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[password]&nbsp;[nvarchar](50)&nbsp;NULL&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblDownloads]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblDownloads](&nbsp;</td></tr>
+<tr><td>&nbsp;[id]&nbsp;[int]&nbsp;IDENTITY(1,1)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[fName]&nbsp;[nvarchar](255)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[descText]&nbsp;[nvarchar](255)&nbsp;NOT&nbsp;NULL&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblBlogCategories]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblBlogCategories](&nbsp;</td></tr>
+<tr><td>&nbsp;[categoryid]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[categoryname]&nbsp;[nvarchar](50)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[blog]&nbsp;[nvarchar](50)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;CONSTRAINT&nbsp;[PK_tblBlogCategories]&nbsp;PRIMARY&nbsp;KEY&nbsp;CLUSTERED&nbsp;&nbsp;</td></tr>
+<tr><td>(&nbsp;</td></tr>
+<tr><td>&nbsp;[categoryid]&nbsp;ASC&nbsp;</td></tr>
+<tr><td>)WITH&nbsp;(IGNORE_DUP_KEY&nbsp;=&nbsp;OFF)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblBlogComments]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblBlogComments](&nbsp;</td></tr>
+<tr><td>&nbsp;[id]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[entryidfk]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[name]&nbsp;[nvarchar](50)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[email]&nbsp;[nvarchar](50)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[website]&nbsp;[nvarchar](255)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[comment]&nbsp;[ntext]&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[posted]&nbsp;[datetime]&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[subscribe]&nbsp;[bit]&nbsp;NULL&nbsp;CONSTRAINT&nbsp;[DF_tblBlogComments_subscribe]&nbsp;&nbsp;DEFAULT&nbsp;((0)),&nbsp;</td></tr>
+<tr><td>&nbsp;CONSTRAINT&nbsp;[PK_tblBlogComments]&nbsp;PRIMARY&nbsp;KEY&nbsp;CLUSTERED&nbsp;&nbsp;</td></tr>
+<tr><td>(&nbsp;</td></tr>
+<tr><td>&nbsp;[id]&nbsp;ASC&nbsp;</td></tr>
+<tr><td>)WITH&nbsp;(IGNORE_DUP_KEY&nbsp;=&nbsp;OFF)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;TEXTIMAGE_ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblBlogEntries]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblBlogEntries](&nbsp;</td></tr>
+<tr><td>&nbsp;[id]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[title]&nbsp;[nvarchar](100)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[body]&nbsp;[ntext]&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[posted]&nbsp;[datetime]&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[morebody]&nbsp;[ntext]&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[alias]&nbsp;[nvarchar](100)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[username]&nbsp;[nvarchar](100)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[blog]&nbsp;[nvarchar](50)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[allowcomments]&nbsp;[bit]&nbsp;NULL&nbsp;CONSTRAINT&nbsp;[DF_tblBlogEntries_allowcomments]&nbsp;&nbsp;DEFAULT&nbsp;((1)),&nbsp;</td></tr>
+<tr><td>&nbsp;[enclosure]&nbsp;[nvarchar](255)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[filesize]&nbsp;[numeric](18,&nbsp;0)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[mimetype]&nbsp;[nvarchar](255)&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;CONSTRAINT&nbsp;[PK_tblBlogEntries]&nbsp;PRIMARY&nbsp;KEY&nbsp;CLUSTERED&nbsp;&nbsp;</td></tr>
+<tr><td>(&nbsp;</td></tr>
+<tr><td>&nbsp;[id]&nbsp;ASC&nbsp;</td></tr>
+<tr><td>)WITH&nbsp;(IGNORE_DUP_KEY&nbsp;=&nbsp;OFF)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;TEXTIMAGE_ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblBlogEntriesCategories]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;<br></td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblBlogEntriesCategories](&nbsp;</td></tr>
+<tr><td>&nbsp;[categoryidfk]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[entryidfk]&nbsp;[nvarchar](35)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;CONSTRAINT&nbsp;[PK_tblBlogEntriesCategories]&nbsp;PRIMARY&nbsp;KEY&nbsp;CLUSTERED&nbsp;&nbsp;</td></tr>
+<tr><td>(&nbsp;</td></tr>
+<tr><td>&nbsp;[categoryidfk]&nbsp;ASC,&nbsp;</td></tr>
+<tr><td>&nbsp;[entryidfk]&nbsp;ASC&nbsp;</td></tr>
+<tr><td>)WITH&nbsp;(IGNORE_DUP_KEY&nbsp;=&nbsp;OFF)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;ANSI_NULLS&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>SET&nbsp;QUOTED_IDENTIFIER&nbsp;ON&nbsp;</td></tr>
+<tr><td>GO&nbsp;</td></tr>
+<tr><td>IF&nbsp;NOT&nbsp;EXISTS&nbsp;(SELECT&nbsp;*&nbsp;FROM&nbsp;sys.objects&nbsp;WHERE&nbsp;object_id&nbsp;=&nbsp;OBJECT_ID(N'[dbo].[tblBlogSearchStats]')&nbsp;AND&nbsp;type&nbsp;in&nbsp;(N'U'))&nbsp;</td></tr>
+<tr><td>BEGIN&nbsp;</td></tr>
+<tr><td>CREATE&nbsp;TABLE&nbsp;[dbo].[tblBlogSearchStats](&nbsp;</td></tr>
+<tr><td>&nbsp;[searchterm]&nbsp;[nvarchar](255)&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[searched]&nbsp;[datetime]&nbsp;NOT&nbsp;NULL,&nbsp;</td></tr>
+<tr><td>&nbsp;[blog]&nbsp;[nvarchar](50)&nbsp;NOT&nbsp;NULL&nbsp;</td></tr>
+<tr><td>)&nbsp;ON&nbsp;[PRIMARY]&nbsp;</td></tr>
+<tr><td>END&nbsp;</td></tr>
+<tr><td></td></tr>
+</table>
+	  </td>
+    </tr>
+</table>
+<p align="justify">If you wish to have the source for the few files that are encrypted you may make a suitable donation to support my efforts in keeping the lights turned-on in return for which I will email the source for the encrypted files. </p>
+<p align="justify"><strong>And now for a shameless plug</strong> </p>
+<p align="justify"><strong>Geonosis&trade;</strong>, an up and coming future product, uses all the tricks and techniques I have learned over the past 10+ yrs of my personal ColdFusion development experience as well as my past 30 years of software development expertise. </p>
+<p align="justify"><strong>Geonosis&trade;</strong> will use the <strong>The Rabid CF Developer's AJAX Framework</strong> just as soon as I have completed my work on the next generation version of this exciting AJAX Framework .</p>
+<p align="justify">Stay tuned for more exciting <strong>Geonosis&trade;</strong> blog posts as development continues to march right along. </p>
+<p align="justify">&nbsp;</p>

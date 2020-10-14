@@ -1,0 +1,149 @@
+A 			{ color: #0000cc; font-family: Trebuchet MS, verdana, arial, sans-serif; text-decoration: none; font-weight:bold; } 
+A:link		{ color: #0000cc; text-decoration: none; } 
+A:visited	{ color: #0000cc; text-decoration: none; } 
+A:active	{ color: #99CC66;  } 
+A:hover		{ color: #99CC66;  } 
+
+h1 {
+	font-family: Trebuchet MS, verdana,arial, sans-serif;
+	font-size: medium;
+	font-weight: bold;
+	margin: 0;
+	color: #000;
+}
+#content {
+	float: left;
+	border-right:1px dotted #999;
+	margin-right:15px;
+	width: 100%;
+	margin-top: 15px;
+}
+
+#menu {
+	margin-left: 5px;
+	margin-top: 15px;
+}
+
+#blogText {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+#banner {
+	font-family: Trebuchet MS, verdana,arial, sans-serif;
+	font-size: 22px;
+	font-weight: bold;
+	color: white;
+	background-color: #0000cc;
+	padding: 5px;
+}
+
+.body, td {
+	font-family: Trebuchet MS, verdana, arial, sans-serif; 
+	font-size: 11px; 
+	color: #000000; 
+	margin-left: 0px;
+}
+
+input, select {
+	font-family: Trebuchet MS, verdana, arial, sans-serif; 
+	font-size: 11px; 
+	color: #000000; 
+}
+
+.byline {
+	font-family: Trebuchet MS, verdana, arial, sans-serif; 
+	color: #000;
+	line-height: 135%;
+	margin: 0;
+	padding: 0 0 8px 0;
+}
+
+.menuTitle {
+	font-family: verdana, arial, sans-serif; 
+	font-size: 10px;
+	background-color: #66ccff;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: .2em;
+	padding: 5px;
+}
+
+.header, .header a {
+	font-family: verdana, arial, sans-serif; 
+	font-size: 11px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.calendar_table, .calendar_table a {
+	font-family: verdana, arial, sans-serif; 
+	font-size: 10px;
+	text-align: center;
+	padding: 2px;
+	line-height: 14px;
+}
+
+.calendar_today {
+	background-color: yellow;
+}
+
+.menuBody {
+	font-family: verdana, arial, sans-serif; 
+	font-size: 10px;
+	text-align: left;
+	padding: 2px;
+	line-height: 14px;
+}
+
+.menuBody A {
+	font-family: verdana, arial, sans-serif; 
+	font-size: 10px;
+}
+
+.date {
+	font-family: Trebuchet MS, verdana, arial, sans-serif; 
+	font-size: 11px; 
+	color: #666; 
+	border:1px solid #999;
+	padding:5px;
+	margin-bottom:10px;
+	font-weight:normal;
+}
+
+.blogHeader, .trackbackHeader, .commentHeader {
+	font-family: Trebuchet MS, verdana, arial, sans-serif; 
+	font-size: 11px; 
+	color: #666; 
+	border:1px solid #999;
+	padding:5px;
+	margin-bottom:10px;
+	font-weight:normal;
+}
+
+.rightMenu {
+	border:1px solid #999;
+}
+
+.code {
+	font-family: courier;
+	font-size: 11px;
+	color: black;
+	border: solid thin #0000cc;
+	background-color: #ffffcc;
+	overflow: auto;
+	max-height: 200px;
+}
+
+.codePrint {
+	font-family: courier;
+	font-size: 11px;
+	color: black;
+	border: solid thin #0000cc;
+	background-color: #ffffcc;
+}
+
+.normalPrompt {
+	font-size: 10px;
+	color: black;
+}

@@ -1,0 +1,62 @@
+<HTML>
+<HEAD>
+</HEAD>
+<BODY>
+<PRE>
+Changes in SVG-VML-3D from v.1.1 to v.1.2 (02/2006):
+----------------------------------------------------
+
+
+The header of the file scene.svg had to be changed, to get it working in Mozilla
+
+&lt;?xml ...&gt;
+&lt;!DOCTYPE ...&gt;
+&lt;svg ...&gt;
+
+=========================================================================================
+
+To get transparent background with IE and ASV3
+
+	if (useSVG) document.writeln("&lt;embed ... src='scene.svg'&gt;");
+
+had to be changed in
+
+	if (useSVG) document.writeln("&lt;embed ... src='scene.svg' wmode='transparent'&gt;");
+
+in the sample html files.
+
+=========================================================================================
+
+To get the SVG branch working with Mozilla
+
+	createElementNS("http://www.w3.org/2000/svg","...")
+
+had to be used instead of 
+
+	createElement("...")
+
+in svgvml3d.js and boundingbox.js.
+
+=========================================================================================
+
+To get the text for the scale in the 3D chart and function plotter with Mozilla
+
+	oo.firstChild.replaceData(0,108,vv);
+
+had to be used instead of
+
+	oo.getFirstChild().setData(vv);
+
+in boundingbox.js.
+
+=========================================================================================
+
+evt.getTarget() and if (window.browserEval) had to be removed from scene.svg, because it
+caused script errors with ASV3/Mozilla. The script now uses the method
+document.embeds[this.idx].getSVGDocument(), which is defined in svgvml3d.js,
+in order to get the svg document handle.
+
+=========================================================================================
+</PRE>
+</BODY>
+</HTML>

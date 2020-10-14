@@ -1,0 +1,122 @@
+<strong>Geonosis&trade;</strong> Version 1.0 - <a href="http://rayhorn.contentopia.net/blog/downloads/Geonosis_v1.zip" target="_blank">You can download Geonosis&trade; here</a>.
+<br><br>
+<p align="justify"><strong>And now for some improvements for BlogCFC 4.0.2 </strong>. </p>
+<p align="justify"> I must say I have enjoyed using <a href="http://ray.camdenfamily.com/projects/blogcfc/" target="_blank">Raymond Camden's rather well written BlogCFC 4.0.2</a> however... I must also say I have wanted to make some improvements to how this masterfully written Blog server works.  Read on.</p>
+<p align="justify">Firstly, I found-out quite by accident that BlogCFC 4.0.2 tends to work one way (by default, it seems) for Apache web servers and another way for IIS so I coded a little something-something to allow BlogCFC to &quot;understand&quot; which server it is running with and to operate in a it more useful manner (see below). </p>
+
+<table width="600" border="1" cellspacing="-1" cellpadding="-1">
+  	<tr>
+		<td align="center" bgcolor="silver">
+			<small><b>Code Sample #1 that allows BlogCFC to work better  </b></small>
+		</td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+		<table width="100%" border="0" cellspacing="-1" cellpadding="-1" style="font-size: 11px;">
+			<tr>
+				<td>
+&lt;cfscript&gt;
+				</td>
+			</tr>
+			<tr>
+				<td>
+	&nbsp;&nbsp;&nbsp;Request.const_blogURLMode_IIS = 'IIS';
+				</td>
+			</tr>
+			<tr>
+				<td>
+	&nbsp;&nbsp;&nbsp;Request.const_blogURLMode_APACHE = 'APACHE';
+				</td>
+			</tr>
+			<tr>
+				<td>
+	&nbsp;&nbsp;&nbsp;if (FindNoCase(Request.const_blogURLMode_APACHE, CGI.SERVER_SOFTWARE) gt 0) {
+				</td>
+			</tr>
+			<tr>
+				<td>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Request.blogURLMode = Request.const_blogURLMode_APACHE;
+				</td>
+			</tr>
+			<tr>
+				<td>
+	&nbsp;&nbsp;&nbsp;} else {
+				</td>
+			</tr>
+			<tr>
+				<td>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Request.blogURLMode = Request.const_blogURLMode_IIS;
+				</td>
+			</tr>
+			<tr>
+				<td>
+	&nbsp;&nbsp;&nbsp;}
+				</td>
+			</tr>
+			<tr>
+				<td>
+&lt;/cfscript&gt;
+				</td>
+			</tr>
+		</table>
+	  </td>
+    </tr>
+</table>
+<p>Of course the variable &quot;Request.blogURLMode&quot; is used to drive the way BlogCFC then creates links using the following code sample: </p>
+<table width="600" border="1" cellspacing="-1" cellpadding="-1">
+  	<tr>
+		<td align="center" bgcolor="silver">
+			<small><b>Code Sample #2 that allows BlogCFC to work better  </b></small>
+		</td>
+	</tr>
+    <tr>
+      <td align="left" bordercolor="#000000" bgcolor="#FFFF66">
+		<table width="100%" border="0" cellspacing="-1" cellpadding="-1" style="font-size: 11px;">
+			<tr>
+				<td>
+		&lt;cfif (q.alias is not "") AND (IsDefined("Request.blogURLMode")) AND (UCASE(Request.blogURLMode) neq UCASE(Request.const_blogURLMode_IIS))&gt;
+				</td>
+			</tr>
+			<tr>
+				<td>
+			&nbsp;&nbsp;&nbsp;&lt;cfreturn "#instance.blogURL#/#year(q.posted)#/#month(q.posted)#/#day(q.posted)#/#q.alias#"&gt;
+				</td>
+			</tr>
+			<tr>
+				<td>
+		&lt;cfelse&gt;
+				</td>
+			</tr>
+			<tr>
+				<td>
+			&nbsp;&nbsp;&nbsp;&lt;cfreturn "#instance.blogURL#?mode=entry&entry=#arguments.entryid#"&gt;
+				</td>
+			</tr>
+			<tr>
+				<td>
+		&lt;/cfif&gt;
+				</td>
+			</tr>
+		</table>
+	  </td>
+    </tr>
+</table>
+
+<p>By now some of you may be wondering just &quot;why&quot; anyone would want to do this with BlogCFC 4.0.2 ?!? Well I was wondering this myself but then I do tend to use both Apache and IIS but for different reasons than most perhaps. I use Apache on my 64-bit Turion Laptop for development because I sometimes find myself working in situations where it's just not possible or productive to use IIS for development although in all fairness I do have IIS installed on my laptop right along-side Apache 2.0.54 and both web servers are able to share the same web-space and both are able to use CFMX 7.0.1 however Apache is using port 80 and IIS is using port 8080. One day I noticed BlogCFC 4.0.2 worked fine when running in Apache but the links failed when running on my Production web server which is using only IIS under Windows 2003 at the moment. So then I dug into the code and found out the default behavior was to favor Apache however the code didn't seem to care which web server it was running on although the code also seemed to know how to deal with IIS so I thought I would complete that thought and make BlogCFC 4.0.2 know a little more about how I like to do things. Who knows, maybe someday I will even deploy Apache 2.0.55 to my Production web server and then issues like this won't matter so much but this is a topic for a future Blog post.</p>
+<p><strong>Future &quot;impovements&quot; for BlogCFC 4.0.2</strong></p>
+<p>Now don't get me wrong here, I like BlogCFC and I do use it but there are some things it needs to be able to do for &quot;me&quot; in order to remain useful going forward.</p>
+<p>I would like to be able to deploy a FREE Blog Service so others, whomever may wish to, can host their Blog sites using my server(s) and bandwidth. It seems I have a log of space in my SQL Server 2005 server that is not being used and I seem to have some unused bandwidth I am paying for each month so why not share the wealth with others ?!? I don't want to have to code my own multi-site Blog server   so why not see if I can make BlogCFC 4.0.2 jump through some hoops for me ?!? Who knows, I might even learn something in the process.</p>
+<p>So then I began to look at the BlogCFC code and I sat back in my favorite leather office chair and I stroked my chin and thought for a moment about how to make BlogCFC &quot;know&quot; about and easily handle multi-sites just as easily as it &quot;knows&quot; how to handle a single site's Blog. Hmmm... And then it hit me. Oh, that darned cat, is what hit me - one of my pet cats ran up the back of my leather chair and jumped up onto the shelf sitting nearby and then he chose that moment to make is dismount from the shelf and be planted his body on the back of my leather chair - that's what hit me. Okay, back to the coding problem at-hand, enough fun with the cat. </p>
+<p>BlogCFC can be easily made to deal with multi-sites as long as each site gets a folder under the primary webroot for the product; into each site's folder will go a small chunk of code in an index.cfm file that will run some code sitting in a CFC I will write. The index.cfm file will then perform some database magic to make a copy of the database schema that will be owned by a phantom database owner that will be the name of the folder this code runs in. It seems SQL Server 2000 and hopefully SQL Server 2005 know how to allow Tables to be owned by users that don't have logins and more importantly the &quot;owner&quot; is treated as nothing more than a string; SQL Server allows these Objects that are owned by a phantom user to inherit the permissions from the user context that was used to login and before you can say &quot;bingo&quot; you are able to make multiple copies of a single schema each of which is treated like a separate database all stored in parallel by a single server.</p>
+<p>Whoa, now I can make BlogCFC 4.0.2 allow as many people as I may desire have their own Blog sites all hosted under a single umbrella of a web site. Of course, I plan on allowing Blog site &quot;owners&quot; to specify their own Blog Site Name using the naming convention of &quot;http://blogs.contentopia.net/your-blog-name-goes-here/&quot;. I also plan on allowing Blog site &quot;owners&quot; to be able to have a domain name of their own for a small extra fee - just as soon as I figure out how to do this without having to restart the web server each time someone signs-up for a domain name.</p>
+<p>Now I wonder how I could go about making some money from this whole idea of mine ?!? Hmmm... could I maybe offer this as a FREE service and then run my own Google Ads in each Blog site ?!? Could I then maybe ask each Blog site owner to pay a small fee of say $1 per month to have those Google Ads removed so they can run their own Google Ads on their own Blog site ?!? Could I also maybe offer to split the Google Ads commisisons I earn using a 50/50 split and then reduce the monthly fee to say $5 per year rather than $1 per month ?!?</p>
+<p>Now I wonder, as I do sometimes, whether or not I could make BlogCFC into a Content Management System that would initially allow Blog site owners be able to modify their own layouts using a drag-n-drop AJAX driven interface ?!? Hmmm... I do have all JavaScript code that supports this sort of thing just sitting around collecting dust.</p>
+<p>And then I wonder, as I do sometimes, as to whether or not I could maybe take BlogCFC one step further down the road to being a Content Management System and allow Blog site owners to be able to modify their own CSS's - this would allow them to define their own look-n-feel issues to a certain degree. </p>
+<p>Yes, I do think I could easily, although it would take some time to complete the work, make BlogCFC into a full-blown CMS driven AJAX powered multi-site Blog monster and I do have a whole lot of code just sitting around collecting dust just begging me to have all this fun making BlogCFC into a power Blogging tool.</p>
+<p>In all fairness, since I obtained BlogCFC as an open-source product I will make the code available for the final BlogCFC product although the source code that I add will be obscured a bit since I am doing a lot of work here or maybe I will simply make my add-ons work as add-ons that can plug themselves into an existing BlogCFC 4.0.2 so that I can then &quot;license&quot; my add-ons as separate products that I can sell to others who may wish to benfit from my work meanwhile supporting my efforts in doing so.</p>
+<p><strong>And now for a shameless plug</strong>  </p>
+<p align="justify"><strong>Geonosis&trade;</strong>, an up and coming future product, uses all the tricks and techniques I have learned over the past 10+ yrs of my personal ColdFusion development experience as well as my past 30 years of software development expertise. </p>
+<p align="justify"><strong>Geonosis&trade;</strong>, will also have the ability to automatically create Blog sites such as the one I am proposing above in this blog post. I will simply create a <strong>Geonosis&trade;</strong> applet call &quot;Blog Site&quot; that will encapsulate all the behaviors required to allow a Blog site to become alive using completely reusable code.</p>
+<p align="justify">Heck, I might even use the <strong>Geonosis&trade;</strong> <strong>User Manager</strong> to replace the user login system that BlogCFC is using now since the <strong>Geonosis&trade;</strong> <strong>User Manager</strong> is a bit more powerful than the one that comes along with BlogCFC 4.0.2 and the <strong>Geonosis&trade;</strong> <strong>User Manager</strong> is almost minimally functional with only a few small features left to code. </p>
+<p align="justify">Stay tuned for more exciting <strong>Geonosis&trade;</strong> blog posts as development continues to march right along. </p>
+<p align="justify">I have posted an initial <strong>CMS 1.0 (Content Management System v 1.0)</strong> design doc in the Downloads Section of this Blog for all to see and enjoy. </p>
